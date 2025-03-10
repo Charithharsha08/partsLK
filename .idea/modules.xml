@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/backEnd/backEnd.iml" filepath="$PROJECT_DIR$/backEnd/backEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/partsLK.iml" filepath="$PROJECT_DIR$/partsLK.iml" />
     </modules>
   </component>
