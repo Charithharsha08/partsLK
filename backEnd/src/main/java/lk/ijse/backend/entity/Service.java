@@ -1,9 +1,17 @@
 package lk.ijse.backend.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 
 @Entity
 public class Service {
@@ -25,8 +33,5 @@ public class Service {
             fetch = FetchType.LAZY,
             mappedBy = "service")
     private List<OrderedServiceDetails> serviceDetails = new ArrayList<>();
-
-    public Service() {
-    }
 
 }

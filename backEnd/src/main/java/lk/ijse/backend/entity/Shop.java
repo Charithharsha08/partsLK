@@ -1,9 +1,17 @@
 package lk.ijse.backend.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
 
 @Entity
 public class Shop {
@@ -30,9 +38,5 @@ private String shopLocation;
             fetch = FetchType.LAZY,
             mappedBy = "shop")
     private List<Review> reviews = new ArrayList<>();
-
-    public Shop() {
-    }
-
 
 }
