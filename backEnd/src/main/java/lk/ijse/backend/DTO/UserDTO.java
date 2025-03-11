@@ -3,7 +3,7 @@ package lk.ijse.backend.DTO;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
+import org.springframework.stereotype.Component;
 
 public class  UserDTO {
     private String email;
