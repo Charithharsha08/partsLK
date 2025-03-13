@@ -15,6 +15,7 @@ import java.util.List;
 @Entity
 public class Item {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String itemId;
     private String itemName;
     private String itemDescription;

@@ -14,8 +14,9 @@ import java.util.List;
 @Data
 
 @Entity
-public class Service {
+public class Services {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String serviceId;
     private String serviceName;
     private String serviceDescription;

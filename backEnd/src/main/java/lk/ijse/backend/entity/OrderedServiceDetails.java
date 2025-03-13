@@ -34,5 +34,5 @@ public class OrderedServiceDetails {
 
     @ManyToOne
     @JoinColumn(name = "serviceId", referencedColumnName = "serviceId",insertable = false, updatable = false)
-    private Service service;
+    private Services services;
 }

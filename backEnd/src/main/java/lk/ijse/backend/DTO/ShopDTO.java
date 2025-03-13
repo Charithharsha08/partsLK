@@ -1,25 +1,15 @@
-package lk.ijse.backend.entity;
+package lk.ijse.backend.DTO;
 
-import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
 
 
-@Entity
-public class Shop {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String shopId;
+public class ShopDTO {
     private String shopName;
     private String shopAddress;
     private String shopLocation;
     private String shopContact;
-    @Column(unique = true)
     private String shopEmail;
     private String shopOwner;
     private String shopOwnerContact;
@@ -28,21 +18,12 @@ public class Shop {
     private Date shopOwnerDOB;
     private String shopOwnerPassword;
     private String shopOwnerRole;
+    private UserDTO userDTO;
 
-    @ManyToOne
-    @JoinColumn(name = "userId", referencedColumnName = "userId")
-    private User user;
-
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "shop")
-    private List<Review> reviews = new ArrayList<>();
-
-    public Shop() {
+    public ShopDTO() {
     }
 
-    public Shop(String shopId, String shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, User user, List<Review> reviews) {
-        this.shopId = shopId;
+    public ShopDTO(String shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, UserDTO userDTO) {
         this.shopName = shopName;
         this.shopAddress = shopAddress;
         this.shopLocation = shopLocation;
@@ -55,16 +36,7 @@ public class Shop {
         this.shopOwnerDOB = shopOwnerDOB;
         this.shopOwnerPassword = shopOwnerPassword;
         this.shopOwnerRole = shopOwnerRole;
-        this.user = user;
-        this.reviews = reviews;
-    }
-
-    public String getShopId() {
-        return shopId;
-    }
-
-    public void setShopId(String shopId) {
-        this.shopId = shopId;
+        this.userDTO = userDTO;
     }
 
     public String getShopName() {
@@ -163,19 +135,11 @@ public class Shop {
         this.shopOwnerRole = shopOwnerRole;
     }
 
-    public User getUser() {
-        return user;
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    public List<Review> getReviews() {
-        return reviews;
-    }
-
-    public void setReviews(List<Review> reviews) {
-        this.reviews = reviews;
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 }

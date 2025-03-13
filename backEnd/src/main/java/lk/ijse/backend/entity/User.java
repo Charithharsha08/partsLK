@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +24,7 @@ public class User {
     private String mobile;
     private String address;
     private String nic;
-    private String dob;
+    private Date dob;
     private String password;
     private String role;
 
@@ -45,7 +46,7 @@ public class User {
     public User() {
     }
 
-    public User(UUID userId, String email, String mobile, String address, String nic, String dob, String password, String role, List<Order> orders, List<Review> reviews, List<Shop> shops) {
+    public User(UUID userId, String email, String mobile, String address, String nic, Date dob, String password, String role, List<Order> orders, List<Review> reviews, List<Shop> shops) {
         this.userId = userId;
         this.email = email;
         this.mobile = mobile;
@@ -99,11 +100,11 @@ public class User {
         this.nic = nic;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 
