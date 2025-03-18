@@ -1,18 +1,28 @@
 package lk.ijse.backend.DTO;
 
+import lombok.*;
+
+/*
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+*/
+
+
 public class ServiceDTO {
     private long serviceId;
     private String serviceName;
     private String serviceDescription;
-    private String servicePrice;
+    private double servicePrice;
     private String serviceDuration;
     private String serviceType;
     private String serviceStatus;
+    private String location;
 
     public ServiceDTO() {
     }
 
-    public ServiceDTO(long serviceId, String serviceName, String serviceDescription, String servicePrice, String serviceDuration, String serviceType, String serviceStatus) {
+    public ServiceDTO(long serviceId, String serviceName, String serviceDescription, double servicePrice, String serviceDuration, String serviceType, String serviceStatus, String location) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.serviceDescription = serviceDescription;
@@ -20,6 +30,7 @@ public class ServiceDTO {
         this.serviceDuration = serviceDuration;
         this.serviceType = serviceType;
         this.serviceStatus = serviceStatus;
+        this.location = location;
     }
 
     public long getServiceId() {
@@ -46,11 +57,11 @@ public class ServiceDTO {
         this.serviceDescription = serviceDescription;
     }
 
-    public String getServicePrice() {
+    public double getServicePrice() {
         return servicePrice;
     }
 
-    public void setServicePrice(String servicePrice) {
+    public void setServicePrice(double servicePrice) {
         this.servicePrice = servicePrice;
     }
 
@@ -76,5 +87,13 @@ public class ServiceDTO {
 
     public void setServiceStatus(String serviceStatus) {
         this.serviceStatus = serviceStatus;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 }

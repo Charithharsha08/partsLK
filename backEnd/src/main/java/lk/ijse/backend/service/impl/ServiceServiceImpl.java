@@ -9,6 +9,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ServiceServiceImpl implements ServiceService {
 
@@ -28,13 +30,11 @@ public class ServiceServiceImpl implements ServiceService {
     }
 
     @Override
-    public ServiceDTO searchService(String serviceName) {
-     /*   if (serviceRepository.existsById(serviceName)) {
-            Services services = serviceRepository.findById(serviceName).get();
+    public ServiceDTO searchService(long serviceId) {
+        if (serviceRepository.existsById(serviceId)) {
+            Services services = serviceRepository.findById(serviceId).get();
             return modelMapper.map(services, ServiceDTO.class);
-        } else {
-            return null;
-        }*/
+        }
         return null;
     }
 
@@ -56,5 +56,11 @@ public class ServiceServiceImpl implements ServiceService {
         } else {
             return VarList.Not_Found;
         }
+    }
+
+    @Override
+    public List<ServiceDTO> getAllServices() {
+        List<Services> all = serviceRepository.findAll();
+        return modelMapper.map(all, List.class);
     }
 }
