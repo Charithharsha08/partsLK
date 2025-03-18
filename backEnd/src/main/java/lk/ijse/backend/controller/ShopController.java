@@ -68,7 +68,7 @@ public class ShopController {
         }
     }
     @DeleteMapping("/delete/{shopId}")
-    public ResponseEntity<ResponseDTO> deleteShop(@PathVariable String shopId) {
+    public ResponseEntity<ResponseDTO> deleteShop(@PathVariable long shopId) {
         try {
             int res = shopService.deleteShop(shopId);
             switch (res){

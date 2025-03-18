@@ -48,7 +48,7 @@ public class ShopServiceImpl implements ShopService {
     }
 
     @Override
-    public int deleteShop(String shopId) {
+    public int deleteShop(long shopId) {
         if (shopRepository.existsById(shopId)) {
             shopRepository.deleteById(shopId);
             return VarList.OK;
