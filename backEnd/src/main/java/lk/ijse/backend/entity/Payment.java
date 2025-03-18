@@ -1,9 +1,6 @@
 package lk.ijse.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +13,8 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Payment {
     @Id
-    private String paymentId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long paymentId;
     private String paymentDate;
     private String paymentTime;
     private String paymentDescription;

@@ -29,16 +29,17 @@ public class ServiceServiceImpl implements ServiceService {
 
     @Override
     public ServiceDTO searchService(String serviceName) {
-        if (serviceRepository.existsById(serviceName)) {
+     /*   if (serviceRepository.existsById(serviceName)) {
             Services services = serviceRepository.findById(serviceName).get();
             return modelMapper.map(services, ServiceDTO.class);
         } else {
             return null;
-        }
+        }*/
+        return null;
     }
 
     @Override
-    public int deleteService(String serviceId) {
+    public int deleteService(long serviceId) {
         if (serviceRepository.existsById(serviceId)) {
             serviceRepository.deleteById(serviceId);
             return VarList.OK;

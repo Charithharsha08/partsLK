@@ -17,7 +17,7 @@ import java.util.List;
 public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String serviceId;
+    private long serviceId;
     private String serviceName;
     private String serviceDescription;
     private String servicePrice;
@@ -27,12 +27,15 @@ public class Services {
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "service")
+            mappedBy = "services")
     private List<Review> reviews = new ArrayList<>();
 
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
-            mappedBy = "service")
+            mappedBy = "services")
     private List<OrderedServiceDetails> serviceDetails = new ArrayList<>();
+
+
+
 
 }

@@ -14,7 +14,7 @@ import lombok.NoArgsConstructor;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String reviewId;
+    private long reviewId;
     private String reviewDate;
     private String reviewTime;
     private String reviewDescription;

@@ -1,7 +1,7 @@
 package lk.ijse.backend.DTO;
 
 public class ServiceDTO {
-    private String serviceId;
+    private long serviceId;
     private String serviceName;
     private String serviceDescription;
     private String servicePrice;
@@ -12,11 +12,21 @@ public class ServiceDTO {
     public ServiceDTO() {
     }
 
-    public String getServiceId() {
+    public ServiceDTO(long serviceId, String serviceName, String serviceDescription, String servicePrice, String serviceDuration, String serviceType, String serviceStatus) {
+        this.serviceId = serviceId;
+        this.serviceName = serviceName;
+        this.serviceDescription = serviceDescription;
+        this.servicePrice = servicePrice;
+        this.serviceDuration = serviceDuration;
+        this.serviceType = serviceType;
+        this.serviceStatus = serviceStatus;
+    }
+
+    public long getServiceId() {
         return serviceId;
     }
 
-    public void setServiceId(String serviceId) {
+    public void setServiceId(long serviceId) {
         this.serviceId = serviceId;
     }
 

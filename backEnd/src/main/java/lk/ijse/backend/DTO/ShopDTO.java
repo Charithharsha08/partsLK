@@ -6,7 +6,7 @@ import java.sql.Date;
 
 
 public class ShopDTO {
-    private String shopName;
+    private long shopName;
     private String shopAddress;
     private String shopLocation;
     private String shopContact;
@@ -23,7 +23,7 @@ public class ShopDTO {
     public ShopDTO() {
     }
 
-    public ShopDTO(String shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, UserDTO userDTO) {
+    public ShopDTO(long shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, UserDTO userDTO) {
         this.shopName = shopName;
         this.shopAddress = shopAddress;
         this.shopLocation = shopLocation;
@@ -39,11 +39,11 @@ public class ShopDTO {
         this.userDTO = userDTO;
     }
 
-    public String getShopName() {
+    public long getShopName() {
         return shopName;
     }
 
-    public void setShopName(String shopName) {
+    public void setShopName(long shopName) {
         this.shopName = shopName;
     }
 

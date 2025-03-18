@@ -1,9 +1,6 @@
 package lk.ijse.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,8 +13,9 @@ import lombok.NoArgsConstructor;
 @Entity
 public class OrderedServiceDetails {
     @Id
-    private String serviceDetailId;
-    private String serviceId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long serviceDetailId;
+    private long serviceId;
     private String userId;
     private String serviceName;
     private String serviceDate;

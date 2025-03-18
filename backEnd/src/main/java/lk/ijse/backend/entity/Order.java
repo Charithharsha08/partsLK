@@ -18,7 +18,8 @@ import java.util.List;
 
 public class Order {
     @Id
-    private String orderId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long orderId;
     private String orderDate;
     private String orderTime;
     private String orderStatus;

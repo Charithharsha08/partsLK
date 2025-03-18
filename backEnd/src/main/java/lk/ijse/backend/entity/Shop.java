@@ -14,7 +14,7 @@ import java.util.List;
 public class Shop {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String shopId;
+    private long shopId;
     private String shopName;
     private String shopAddress;
     private String shopLocation;
@@ -41,7 +41,7 @@ public class Shop {
     public Shop() {
     }
 
-    public Shop(String shopId, String shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, User user, List<Review> reviews) {
+    public Shop(long shopId, String shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, User user, List<Review> reviews) {
         this.shopId = shopId;
         this.shopName = shopName;
         this.shopAddress = shopAddress;
@@ -59,11 +59,11 @@ public class Shop {
         this.reviews = reviews;
     }
 
-    public String getShopId() {
+    public long getShopId() {
         return shopId;
     }
 
-    public void setShopId(String shopId) {
+    public void setShopId(long shopId) {
         this.shopId = shopId;
     }
 

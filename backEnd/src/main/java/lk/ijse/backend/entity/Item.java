@@ -16,7 +16,7 @@ import java.util.List;
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String itemId;
+    private long itemId;
     private String itemName;
     private String itemDescription;
     private String vehicleModel;
