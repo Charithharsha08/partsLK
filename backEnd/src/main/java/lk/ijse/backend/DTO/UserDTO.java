@@ -5,8 +5,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.util.UUID;
+
 public class  UserDTO {
-    private String userId;
+    private UUID userId;
     private String email;
     private String mobile;
     private String address;
@@ -18,7 +20,7 @@ public class  UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String userId, String email, String mobile, String address, String nic, String dob, String password, String role) {
+    public UserDTO(UUID userId, String email, String mobile, String address, String nic, String dob, String password, String role) {
         this.userId = userId;
         this.email = email;
         this.mobile = mobile;
@@ -29,11 +31,11 @@ public class  UserDTO {
         this.role = role;
     }
 
-    public String getUserId() {
+    public UUID getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(UUID userId) {
         this.userId = userId;
     }
 

@@ -2,7 +2,7 @@ package lk.ijse.backend.DTO;
 
 
 public class ReviewDTO {
-    private String reviewId;
+    private long reviewId;
     private String reviewDate;
     private String reviewTime;
     private String reviewDescription;
@@ -14,22 +14,22 @@ public class ReviewDTO {
     public ReviewDTO() {
     }
 
-    public ReviewDTO(String reviewId, String reviewDate, String reviewTime, String reviewDescription, String reviewRating, UserDTO userDTO, ShopDTO shop, ServiceDTO serviceDTO) {
+    public ReviewDTO(long reviewId, String reviewDate, String reviewTime, String reviewDescription, String reviewRating, UserDTO userDTO, ShopDTO shopDTO, ServiceDTO serviceDTO) {
         this.reviewId = reviewId;
         this.reviewDate = reviewDate;
         this.reviewTime = reviewTime;
         this.reviewDescription = reviewDescription;
         this.reviewRating = reviewRating;
         this.userDTO = userDTO;
-        this.shopDTO = shop;
+        this.shopDTO = shopDTO;
         this.serviceDTO = serviceDTO;
     }
 
-    public String getReviewId() {
+    public long getReviewId() {
         return reviewId;
     }
 
-    public void setReviewId(String reviewId) {
+    public void setReviewId(long reviewId) {
         this.reviewId = reviewId;
     }
 
@@ -87,5 +87,19 @@ public class ReviewDTO {
 
     public void setServiceDTO(ServiceDTO serviceDTO) {
         this.serviceDTO = serviceDTO;
+    }
+
+    @Override
+    public String toString() {
+        return "ReviewDTO{" +
+                "reviewId=" + reviewId +
+                ", reviewDate='" + reviewDate + '\'' +
+                ", reviewTime='" + reviewTime + '\'' +
+                ", reviewDescription='" + reviewDescription + '\'' +
+                ", reviewRating='" + reviewRating + '\'' +
+                ", userDTO=" + userDTO +
+                ", shopDTO=" + shopDTO +
+                ", serviceDTO=" + serviceDTO +
+                '}';
     }
 }

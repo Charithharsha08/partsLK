@@ -1,8 +1,14 @@
 package lk.ijse.backend.DTO;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+/*@AllArgsConstructor
+@NoArgsConstructor
+@Data*/
 public class ItemDTO {
-    private String itemId;
+    private long itemId;
     private String itemName;
     private String itemDescription;
     private String vehicleModel;
@@ -10,11 +16,14 @@ public class ItemDTO {
     private String itemPrice;
     private String itemQty;
     private String itemImage;
+    private long shopId;
+
+
 
     public ItemDTO() {
     }
 
-    public ItemDTO(String itemId, String itemName, String itemDescription, String vehicleModel, String fuelType, String itemPrice, String itemQty) {
+    public ItemDTO(long itemId, String itemName, String itemDescription, String vehicleModel, String fuelType, String itemPrice, String itemQty, String itemImage, long shopId) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
@@ -22,13 +31,15 @@ public class ItemDTO {
         this.fuelType = fuelType;
         this.itemPrice = itemPrice;
         this.itemQty = itemQty;
+        this.itemImage = itemImage;
+        this.shopId = shopId;
     }
 
-    public String getItemId() {
+    public long getItemId() {
         return itemId;
     }
 
-    public void setItemId(String itemId) {
+    public void setItemId(long itemId) {
         this.itemId = itemId;
     }
 
@@ -78,5 +89,21 @@ public class ItemDTO {
 
     public void setItemQty(String itemQty) {
         this.itemQty = itemQty;
+    }
+
+    public String getItemImage() {
+        return itemImage;
+    }
+
+    public void setItemImage(String itemImage) {
+        this.itemImage = itemImage;
+    }
+
+    public long getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(long shopId) {
+        this.shopId = shopId;
     }
 }
