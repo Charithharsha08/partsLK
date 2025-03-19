@@ -2,7 +2,7 @@ package lk.ijse.backend.service.impl;
 
 import lk.ijse.backend.DTO.ItemDTO;
 import lk.ijse.backend.entity.Item;
-import lk.ijse.backend.repo.ItemRepo;
+import lk.ijse.backend.repo.ItemRepository;
 import lk.ijse.backend.service.ItemService;
 import lk.ijse.backend.util.VarList;
 import org.modelmapper.ModelMapper;
@@ -14,25 +14,25 @@ import java.util.List;
 @Service
 public class ItemServiceImpl implements ItemService {
     @Autowired
-    private ItemRepo itemRepo;
+    private ItemRepository itemRepository;
 
     @Autowired
     private ModelMapper modelMapper;
 
     @Override
     public int addItem(ItemDTO itemDTO) {
-        if (itemRepo.existsItemByItemName(itemDTO.getItemName()) && itemRepo.existsByShop_ShopId(itemDTO.getShopId())) {
+        if (itemRepository.existsItemByItemName(itemDTO.getItemName()) && itemRepository.existsByShop_ShopId(itemDTO.getShopId())) {
             return VarList.Not_Acceptable;
         }else {
-            itemRepo.save(modelMapper.map(itemDTO, Item.class));
+            itemRepository.save(modelMapper.map(itemDTO, Item.class));
             return VarList.Created;
         }
     }
 
     @Override
     public int deleteItem(long itemId) {
-        if (itemRepo.existsById(itemId)) {
-            itemRepo.deleteById(itemId);
+        if (itemRepository.existsById(itemId)) {
+            itemRepository.deleteById(itemId);
             return VarList.OK;
         } else {
             return VarList.Not_Found;
@@ -41,8 +41,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public int updateItem(ItemDTO itemDTO) {
-        if (itemRepo.existsById(itemDTO.getItemId())) {
-            itemRepo.save(modelMapper.map(itemDTO, Item.class));
+        if (itemRepository.existsById(itemDTO.getItemId())) {
+            itemRepository.save(modelMapper.map(itemDTO, Item.class));
             return VarList.OK;
         } else {
             return VarList.Not_Found;
@@ -51,8 +51,8 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public ItemDTO searchItem(long itemId) {
-        if (itemRepo.existsById(itemId)) {
-            return modelMapper.map(itemRepo.findById(itemId).get(), ItemDTO.class);
+        if (itemRepository.existsById(itemId)) {
+            return modelMapper.map(itemRepository.findById(itemId).get(), ItemDTO.class);
         } else {
             return null;
         }
@@ -60,14 +60,14 @@ public class ItemServiceImpl implements ItemService {
 
     @Override
     public List<ItemDTO> getAllItems() {
-        List<Item> itemList = itemRepo.findAll();
+        List<Item> itemList = itemRepository.findAll();
         return modelMapper.map(itemList, List.class);
     }
 
     @Override
     public ItemDTO searchItemByName(String itemName) {
-        if (itemRepo.existsItemByItemName(itemName)) {
-            return modelMapper.map(itemRepo.findItemByItemName(itemName), ItemDTO.class);
+        if (itemRepository.existsItemByItemName(itemName)) {
+            return modelMapper.map(itemRepository.findItemByItemName(itemName), ItemDTO.class);
         } else {
             return null;
         }
