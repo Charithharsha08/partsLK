@@ -17,10 +17,9 @@ public class OrderedItemDetail {
     private long orderId;
     private long itemId;
     private String description;
-    private String price;
-    private String itemPrice;
-    private String qty;
-    private String total;
+    private double price;
+    private double itemPrice;
+    private int qty;
 
     @ManyToOne
     @JoinColumn(name = "orderId", referencedColumnName = "orderId",insertable = false, updatable = false)

@@ -21,8 +21,8 @@ public class Item {
     private String itemDescription;
     private String vehicleModel;
     private String fuelType;
-    private String itemPrice;
-    private String itemQty;
+    private double itemPrice;
+    private int itemQty;
     private String itemImage;
 
 
@@ -38,7 +38,7 @@ public class Item {
     public Item() {
     }
 
-    public Item(long itemId, String itemName, String itemDescription, String vehicleModel, String fuelType, String itemPrice, String itemQty, String itemImage, List<OrderedItemDetail> itemDetails, Shop shop) {
+    public Item(long itemId, String itemName, String itemDescription, String vehicleModel, String fuelType, double itemPrice, int itemQty, String itemImage, List<OrderedItemDetail> itemDetails, Shop shop) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
@@ -91,19 +91,19 @@ public class Item {
         this.fuelType = fuelType;
     }
 
-    public String getItemPrice() {
+    public double getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(String itemPrice) {
+    public void setItemPrice(double itemPrice) {
         this.itemPrice = itemPrice;
     }
 
-    public String getItemQty() {
+    public int getItemQty() {
         return itemQty;
     }
 
-    public void setItemQty(String itemQty) {
+    public void setItemQty(int itemQty) {
         this.itemQty = itemQty;
     }
 

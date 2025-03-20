@@ -5,6 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+import java.sql.Time;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -15,10 +18,9 @@ public class Payment {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long paymentId;
-    private String paymentDate;
-    private String paymentTime;
-    private String paymentDescription;
-    private String paymentAmount;
+    private Date paymentDate;
+    private Time paymentTime;
+    private double paymentAmount;
     private String paymentMethod;
     private String paymentStatus;
 

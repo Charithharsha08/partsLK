@@ -13,8 +13,8 @@ public class ItemDTO {
     private String itemDescription;
     private String vehicleModel;
     private String fuelType;
-    private String itemPrice;
-    private String itemQty;
+    private double itemPrice;
+    private int itemQty;
     private String itemImage;
     private long shopId;
 
@@ -23,7 +23,7 @@ public class ItemDTO {
     public ItemDTO() {
     }
 
-    public ItemDTO(long itemId, String itemName, String itemDescription, String vehicleModel, String fuelType, String itemPrice, String itemQty, String itemImage, long shopId) {
+    public ItemDTO(long itemId, String itemName, String itemDescription, String vehicleModel, String fuelType, double itemPrice, int itemQty, String itemImage, long shopId) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemDescription = itemDescription;
@@ -75,19 +75,19 @@ public class ItemDTO {
         this.fuelType = fuelType;
     }
 
-    public String getItemPrice() {
+    public double getItemPrice() {
         return itemPrice;
     }
 
-    public void setItemPrice(String itemPrice) {
+    public void setItemPrice(double itemPrice) {
         this.itemPrice = itemPrice;
     }
 
-    public String getItemQty() {
+    public int getItemQty() {
         return itemQty;
     }
 
-    public void setItemQty(String itemQty) {
+    public void setItemQty(int itemQty) {
         this.itemQty = itemQty;
     }
 

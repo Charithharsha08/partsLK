@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,8 +20,8 @@ public class OrderedServiceDetails {
     private long serviceId;
     private String userId;
     private String serviceName;
-    private String serviceDate;
-    private String servicePrice;
+    private Date serviceDate;
+    private double servicePrice;
     private String serviceDuration;
     private String serviceType;
     private String serviceStatus;

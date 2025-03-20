@@ -5,7 +5,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -20,11 +22,11 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderId;
-    private String orderDate;
-    private String orderTime;
+    private Date orderDate;
+    private Time orderTime;
     private String orderStatus;
     private String paymentType;
-    private String orderTotal;
+    private double orderTotal;
 
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "userId")
