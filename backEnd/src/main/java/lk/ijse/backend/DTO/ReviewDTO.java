@@ -1,11 +1,18 @@
 package lk.ijse.backend.DTO;
 
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+
 public class ReviewDTO {
     private long reviewId;
+    @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Invalid date")
     private String reviewDate;
+    @Pattern(regexp = "^[0-9]{2}:[0-9]{2}:[0-9]{2}$", message = "Invalid time")
     private String reviewTime;
+    @NotBlank(message = "Review description is required")
     private String reviewDescription;
+    @Pattern(regexp = "^[0-9]+(\\.[0-9]{1,2})?$", message = "Invalid rating")
     private String reviewRating;
     private UserDTO userDTO;
     private ShopDTO shopDTO;

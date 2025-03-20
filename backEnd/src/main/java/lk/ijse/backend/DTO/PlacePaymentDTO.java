@@ -1,11 +1,14 @@
 package lk.ijse.backend.DTO;
 
+import jakarta.validation.constraints.NotBlank;
+
 import java.util.List;
 
 public class PlacePaymentDTO {
     private UserDTO userDTO;
     private List<ItemDTO> itemDTOS;
     private List<ServiceDTO> serviceDTOS;
+    @NotBlank
     private String paymentMethod;
     private String orderStatus;
 

@@ -36,8 +36,6 @@ public class ReviewServiceImpl implements ReviewService {
 
     @Override
     public int saveReview(ReviewDTO reviewDTO) {
-        System.out.println("service Id - "+reviewDTO.getServiceDTO().getServiceId());
-        System.out.println("shop Id - "+reviewDTO.getShopDTO().getShopId());
         try {
             if (reviewRepository.existsById(reviewDTO.getReviewId())) {
                 return VarList.Not_Acceptable;

@@ -1,5 +1,8 @@
 package lk.ijse.backend.DTO;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -9,12 +12,20 @@ import lombok.NoArgsConstructor;
 @Data*/
 public class ItemDTO {
     private long itemId;
+    @NotBlank
+    @Size(min = 3, max = 50 , message = "Item name must contain 3-50 characters")
     private String itemName;
+    @NotBlank(message = "Item description is required")
     private String itemDescription;
+    @NotBlank(message = "Vehicle model is required")
     private String vehicleModel;
+    @NotBlank(message = "Fuel type is required")
     private String fuelType;
+    @Pattern(regexp = "^[0-9]+(\\.[0-9]{1,2})?$", message = "Invalid price")
     private double itemPrice;
+    @Pattern(regexp = "^[0-9]+$", message = "Invalid quantity")
     private int itemQty;
+    @NotBlank(message = "Item image is required")
     private String itemImage;
     private long shopId;
 

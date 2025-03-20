@@ -1,5 +1,9 @@
 package lk.ijse.backend.DTO;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
@@ -7,17 +11,30 @@ import java.sql.Date;
 
 public class ShopDTO {
     private long shopId;
+    @NotBlank(message = "Shop name is required")
     private String shopName;
+    @NotBlank(message = "Shop address is required")
+    @Size(min = 5, max = 100, message = "Shop address must contain 5-100 characters")
     private String shopAddress;
+    @NotBlank(message = "Shop location is required")
     private String shopLocation;
+    @Pattern(regexp = "^[0-9]{10}$", message = "Invalid phone number")
     private String shopContact;
+    @Email(message = "Invalid email")
     private String shopEmail;
+    @NotBlank
     private String shopOwner;
+    @Pattern(regexp = "^[0-9]{10}$", message = "Invalid phone number")
     private String shopOwnerContact;
+    @Email
     private String shopOwnerEmail;
+    @Pattern(regexp = "^[0-9]{9}[vVxX]$", message = "Please provide a valid NIC")
     private String shopOwnerNIC;
+    @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Please provide a valid date of birth")
     private Date shopOwnerDOB;
+    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$", message = "Password must contain at least one uppercase letter, one lowercase letter, one number and at least 8 characters")
     private String shopOwnerPassword;
+    @NotBlank(message = "Role is required")
     private String shopOwnerRole;
     private UserDTO userDTO;
 

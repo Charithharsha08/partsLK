@@ -1,5 +1,8 @@
 package lk.ijse.backend.DTO;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.*;
 
 /*
@@ -11,12 +14,20 @@ import lombok.*;
 
 public class ServiceDTO {
     private long serviceId;
+    @NotBlank
+    @Size(min = 3, max = 50 , message = "Service name must contain 3-50 characters")
     private String serviceName;
+    @NotBlank
     private String serviceDescription;
+    @Pattern(regexp = "^[0-9]+(\\.[0-9]{1,2})?$", message = "Invalid price")
     private double servicePrice;
+    @NotBlank
     private String serviceDuration;
+    @NotBlank
     private String serviceType;
+    @NotBlank
     private String serviceStatus;
+    @NotBlank
     private String location;
 
     public ServiceDTO() {
