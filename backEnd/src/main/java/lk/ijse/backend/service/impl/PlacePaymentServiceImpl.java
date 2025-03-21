@@ -85,6 +85,7 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
                 orderedServiceDetails.setServicePrice(serviceDTO.getServicePrice());
                 orderedServiceDetails.setServiceStatus("Done");
                 orderedServiceDetails.setServiceType(serviceDTO.getServiceType());
+                orderedServiceDetailRepository.save(orderedServiceDetails);
             }
         }
 
