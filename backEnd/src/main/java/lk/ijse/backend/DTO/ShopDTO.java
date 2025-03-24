@@ -1,12 +1,10 @@
 package lk.ijse.backend.DTO;
 
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import org.springframework.stereotype.Component;
 
 import java.sql.Date;
+import java.time.LocalDate;
 
 
 public class ShopDTO {
@@ -30,8 +28,8 @@ public class ShopDTO {
     private String shopOwnerEmail;
     @Pattern(regexp = "^[0-9]{9}[vVxX]$", message = "Please provide a valid NIC")
     private String shopOwnerNIC;
-    @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Please provide a valid date of birth")
-    private Date shopOwnerDOB;
+    @NotNull(message = "Date of birth is required")
+    private LocalDate shopOwnerDOB;
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$", message = "Password must contain at least one uppercase letter, one lowercase letter, one number and at least 8 characters")
     private String shopOwnerPassword;
     @NotBlank(message = "Role is required")
@@ -41,7 +39,7 @@ public class ShopDTO {
     public ShopDTO() {
     }
 
-    public ShopDTO(long shopId, String shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, UserDTO userDTO) {
+    public ShopDTO(long shopId, String shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, LocalDate shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, UserDTO userDTO) {
         this.shopId = shopId;
         this.shopName = shopName;
         this.shopAddress = shopAddress;
@@ -138,11 +136,11 @@ public class ShopDTO {
         this.shopOwnerNIC = shopOwnerNIC;
     }
 
-    public Date getShopOwnerDOB() {
+    public LocalDate getShopOwnerDOB() {
         return shopOwnerDOB;
     }
 
-    public void setShopOwnerDOB(Date shopOwnerDOB) {
+    public void setShopOwnerDOB(LocalDate shopOwnerDOB) {
         this.shopOwnerDOB = shopOwnerDOB;
     }
 

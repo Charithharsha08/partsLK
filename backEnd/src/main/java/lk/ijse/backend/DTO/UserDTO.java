@@ -21,7 +21,7 @@ public class  UserDTO {
     @Pattern(regexp = "^[A-Za-z]+$", message = "Name must contain only letters and spaces")
     @Size(min = 3, max = 50, message = "Name must contain 3-50 characters")
     private String address;
-    @Pattern(regexp = "^[0-9]{9}[vVxX]$", message = "Please provide a valid NIC")
+    //@Pattern(regexp = "^[0-9]{10}$", message = "Please provide a valid NIC")
     private String nic;
     @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Please provide a valid date of birth")
     private String dob;

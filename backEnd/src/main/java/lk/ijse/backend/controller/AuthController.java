@@ -62,5 +62,35 @@ public class AuthController {
                 .body(new ResponseDTO(VarList.Created, "Success", authDTO));
     }
 
+    @PostMapping("/shop-authenticate")
+    public ResponseEntity<ResponseDTO> shopAuthenticate(@RequestBody UserDTO userDTO) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword()));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(new ResponseDTO(VarList.Unauthorized, "Invalid Credentials", e.getMessage()));
+        }
+
+        UserDTO loadedUser = userService.loadUserDetailsByUsername(userDTO.getEmail());
+        if (loadedUser == null) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ResponseDTO(VarList.Conflict, "Authorization Failure! Please Try Again", null));
+        }
+
+        String token = jwtUtil.generateToken(loadedUser);
+        if (token == null || token.isEmpty()) {
+            return ResponseEntity.status(HttpStatus.CONFLICT)
+                    .body(new ResponseDTO(VarList.Conflict, "Authorization Failure! Please Try Again", null));
+        }
+
+        AuthDTO authDTO = new AuthDTO();
+        authDTO.setToken(token);
+        authDTO.setUser(loadedUser);
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(new ResponseDTO(VarList.Created, "Success", authDTO));
+    }
+
 }
 
