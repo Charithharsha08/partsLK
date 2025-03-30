@@ -1,6 +1,7 @@
 package lk.ijse.backend.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -10,4 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 public class PlaceOrderController {
 
+
+    @PostMapping("/save")
+    public void placeOrder(){
+
+    }
 }

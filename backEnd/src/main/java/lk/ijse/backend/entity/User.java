@@ -19,6 +19,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID userId;
+    private String name;
     @Column(unique = true)
     private String email;
     private String mobile;
@@ -46,8 +47,10 @@ public class User {
     public User() {
     }
 
-    public User(UUID userId, String email, String mobile, String address, String nic, Date dob, String password, String role, List<Order> orders, List<Review> reviews, List<Shop> shops) {
+
+    public User(UUID userId, String name, String email, String mobile, String address, String nic, Date dob, String password, String role, List<Order> orders, List<Review> reviews, List<Shop> shops) {
         this.userId = userId;
+        this.name = name;
         this.email = email;
         this.mobile = mobile;
         this.address = address;
@@ -58,6 +61,13 @@ public class User {
         this.orders = orders;
         this.reviews = reviews;
         this.shops = shops;
+    }
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public UUID getUserId() {

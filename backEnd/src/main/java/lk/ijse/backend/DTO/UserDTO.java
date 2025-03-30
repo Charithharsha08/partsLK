@@ -9,22 +9,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
 import java.util.UUID;
 
 public class  UserDTO {
     private UUID userId;
+    @NotBlank(message = "Name is required")
+    private String name;
     @Email(message = "Please provide a valid email address")
     private String email;
     @Pattern(regexp = "^[0-9]{10}$", message = "Please provide a valid mobile number")
     private String mobile;
-    @NotBlank(message = "Name is required")
-    @Pattern(regexp = "^[A-Za-z]+$", message = "Name must contain only letters and spaces")
+    @NotBlank(message = "address is required")
     @Size(min = 3, max = 50, message = "Name must contain 3-50 characters")
     private String address;
     //@Pattern(regexp = "^[0-9]{10}$", message = "Please provide a valid NIC")
     private String nic;
     @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Please provide a valid date of birth")
-    private String dob;
+    private Date dob;
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$", message = "Password must contain at least one uppercase letter, one lowercase letter, one number and at least 8 characters")
     private String password;
     private String role;
@@ -32,8 +34,9 @@ public class  UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(UUID userId, String email, String mobile, String address, String nic, String dob, String password, String role) {
+    public UserDTO(UUID userId, String name, String email, String mobile, String address, String nic, Date dob, String password, String role) {
         this.userId = userId;
+        this.name = name;
         this.email = email;
         this.mobile = mobile;
         this.address = address;
@@ -49,6 +52,14 @@ public class  UserDTO {
 
     public void setUserId(UUID userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -83,11 +94,11 @@ public class  UserDTO {
         this.nic = nic;
     }
 
-    public String getDob() {
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+    public void setDob(Date dob) {
         this.dob = dob;
     }
 

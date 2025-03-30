@@ -3,12 +3,14 @@ package lk.ijse.backend.controller;
 import jakarta.validation.Valid;
 import lk.ijse.backend.DTO.AuthDTO;
 import lk.ijse.backend.DTO.ResponseDTO;
+import lk.ijse.backend.DTO.UpdateUserDTO;
 import lk.ijse.backend.DTO.UserDTO;
 import lk.ijse.backend.service.UserService;
 import lk.ijse.backend.util.JwtUtil;
 import lk.ijse.backend.util.VarList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,6 +24,27 @@ public class UserController {
     public UserController(UserService userService, JwtUtil jwtUtil) {
         this.userService = userService;
         this.jwtUtil = jwtUtil;
+    }
+
+    @GetMapping(value = "get")
+    public ResponseEntity<ResponseDTO> getUserById( @RequestHeader("Authorization") @Valid String authHeader) {
+        try {
+             // Optional: Extract just the token (remove "Bearer " prefix)
+                String token = authHeader.substring(7);
+
+
+            String usernameFromToken = jwtUtil.getUsernameFromToken(token);
+            System.out.println(usernameFromToken);
+
+            System.out.println("Token received: " + token); // Debug line
+
+
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body(new ResponseDTO(VarList.OK, "Success", userService.searchUser(usernameFromToken)));
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
     }
 
     @PostMapping(value = "/register")
@@ -40,6 +63,33 @@ public class UserController {
                 case VarList.Not_Acceptable -> {
                     return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
                             .body(new ResponseDTO(VarList.Not_Acceptable, "Email Already Used", null));
+                }
+                default -> {
+                    return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                            .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
+                }
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
+    }
+    @PutMapping(value = "/update")
+    public ResponseEntity<ResponseDTO> updateUser(@RequestBody @Valid UpdateUserDTO updateUserDTO , @RequestHeader("Authorization") @Valid String authHeader) {
+        try {
+            int res = userService.updateUser(updateUserDTO);
+            switch (res) {
+                case VarList.OK -> {
+                    return ResponseEntity.status(HttpStatus.OK)
+                            .body(new ResponseDTO(VarList.OK, "Success", null));
+                }
+                case VarList.Not_Found -> {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                            .body(new ResponseDTO(VarList.Not_Found, "User Not Found", null));
+                }
+                case VarList.Unauthorized -> {
+                    return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                            .body(new ResponseDTO(VarList.Unauthorized, "Invalid Password", null));
                 }
                 default -> {
                     return ResponseEntity.status(HttpStatus.BAD_GATEWAY)

@@ -1,5 +1,6 @@
 package lk.ijse.backend.service.impl;
 
+import lk.ijse.backend.DTO.UpdateUserDTO;
 import lk.ijse.backend.DTO.UserDTO;
 import lk.ijse.backend.entity.User;
 import lk.ijse.backend.repo.UserRepository;
@@ -65,14 +66,33 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         }
     }
 
-    @Override
-    public int updateUser(UserDTO userDTO) {
-        if (userRepository.existsByEmail(userDTO.getEmail())) {
-            userRepository.save(modelMapper.map(userDTO, User.class));
-            return VarList.OK;
-        } else {
+    public int updateUser(UpdateUserDTO dto) {
+        if (!userRepository.existsByEmail(dto.getEmail())) {
             return VarList.Not_Found;
         }
+
+        User user = userRepository.findByEmail(dto.getEmail());
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+        // Check if old password matches
+        if (!encoder.matches(dto.getOldPassword(), user.getPassword())) {
+            return VarList.Unauthorized; // or any constant representing wrong password
+        }
+
+        // Update fields
+        user.setName(dto.getName());
+        user.setMobile(dto.getMobile());
+        user.setAddress(dto.getAddress());
+        user.setNic(dto.getNic());
+        user.setDob(dto.getDob());
+
+        // If new password is not empty, update it
+        if (dto.getNewPassword() != null && !dto.getNewPassword().isEmpty()) {
+            user.setPassword(encoder.encode(dto.getNewPassword()));
+        }
+
+        userRepository.save(user);
+        return VarList.OK;
     }
 
     @Override
