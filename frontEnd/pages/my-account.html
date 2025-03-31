@@ -465,7 +465,7 @@
                                     <a class="nav-link" id="account-address-tab" data-toggle="tab" href="#account-address" role="tab" aria-controls="account-address" aria-selected="false">Addresses</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" id="account-details-tab" data-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">Account Details</a>
+                                    <a class="nav-link" id="account-details-tab" data-toggle="tab" href="#account-details" role="tab" aria-controls="account-details" aria-selected="false">Shop Details</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" id="account-logout-tab" href="javascript:void(0)" role="tab" aria-selected="false">Logout</a>
@@ -475,11 +475,16 @@
                         <div class="col-lg-9">
                             <div class="tab-content myaccount-tab-content" id="account-page-tab-content">
                                 <div class="tab-pane fade show active" id="account-dashboard" role="tabpanel" aria-labelledby="account-dashboard-tab">
-                                    <div class="myaccount-dashboard">
-                                        <p>Hello <b id="username">Edwin Adams</b> (not <span id="username-again"></span>? <a href="login-page.html">Sign out</a>)</p>
-
-                                        <p>From your account dashboard you can view your recent orders, manage your shipping and
-                                            billing addresses and <a href="javascript:void(0)">edit your password and account details</a>.</p>
+                                    <div class="myaccount-dashboard" id="myaccount-dashboard">
+                                        <div class="with-login" style="display: none;">
+                                            <p>Hello <b id="username"></b> (not <span id="username-again"></span>?
+                                                <a href="login-page.html">Sign out</a>)</p>
+                                        </div>
+                                        <div class="without-login" style="display: none;">
+                                            <p>From your account dashboard you can view your recent orders, manage your shipping and
+                                                billing addresses and <a href="javascript:void(0)">edit your password and account details</a>.</p>
+                                            <p> Please log in first to view user details <a href="login-page.html"> <b>Login here</b></a></p>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="tab-pane fade" id="account-orders" role="tabpanel" aria-labelledby="account-orders-tab">

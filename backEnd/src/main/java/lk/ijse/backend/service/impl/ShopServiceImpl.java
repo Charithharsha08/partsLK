@@ -11,6 +11,8 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
+
 @Service
 public class ShopServiceImpl implements ShopService {
 
@@ -67,5 +69,11 @@ public class ShopServiceImpl implements ShopService {
         } else {
             return VarList.Not_Found;
         }
+    }
+
+    @Override
+    public ShopDTO findShop(UserDTO userDTO) {
+       Shop shop =  shopRepository.findShopByUser(modelMapper.map(userDTO , User.class));
+       return new ShopDTO();
     }
 }

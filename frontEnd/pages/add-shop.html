@@ -1080,8 +1080,8 @@
             <div class="breadcrumb-content">
                 <h2>Other</h2>
                 <ul>
-                    <li><a href="../uren/index.html">Home</a></li>
-                    <li class="active">Login & Register</li>
+                    <li><a href="../index.html">Home</a></li>
+                    <li class="active">Add Shop</li>
                 </ul>
             </div>
         </div>
@@ -1092,70 +1092,70 @@
         <div class="container py-5 h-100">
             <div class="row d-flex align-items-center justify-content-center h-100">
                 <div class="col-md-8 col-lg-7 col-xl-6">
-                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.svg"
+                    <img src="../uren/assets/images/shop/10608601_43160.svg"
                          class="img-fluid" alt="Phone image">
                 </div>
                 <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
                     <form action="/register" method="post">
-                        <!-- Name -->
                         <div class="form-outline mb-4">
-                            <input type="text" id="name" class="form-control form-control-lg" required />
-                            <label class="form-label">Name </label>
+
+                            <input type="text" id="shopName" name="shopName" class="form-control form-control-lg" required />
+                            <label class="form-label">Shop Name</label>
                         </div>
 
-
-                        <!-- Email -->
+                        <!-- Optional: Enter address -->
                         <div class="form-outline mb-4">
-                            <input type="email" id="email" class="form-control form-control-lg" required />
-                            <label class="form-label">Email address</label>
-                        </div>
-
-                        <!-- Password -->
-                        <div class="form-outline mb-4">
-                            <input type="password" id="password" class="form-control form-control-lg" required />
-                            <label class="form-label">Password</label>
-                        </div>
-
-                        <!-- Mobile -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="mobile"  class="form-control form-control-lg" required />
-                            <label class="form-label">Mobile Number</label>
-                        </div>
-
-                        <!-- Address -->
-                        <div class="form-outline mb-4">
-                            <input type="text" id="address" class="form-control form-control-lg" required />
+                            <input type="text" id="shopAddress" name="shopAddress" class="form-control form-control-lg" required />
                             <label class="form-label">Address</label>
+<!--
+                            <button type="button" id="searchAddress" class="btn btn-sm btn-info mt-2">Search Address</button>
+-->
+                        </div>
+
+
+                        <!-- Shop Contact -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="shopContact" name="shopContact" class="form-control form-control-lg" required />
+                            <label class="form-label">Shop Contact</label>
+                        </div>
+
+                        <!-- Shop Email -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="shopEmail" name="shopEmail" class="form-control form-control-lg" required />
+                            <label class="form-label">Shop Email</label>
+                        </div>
+
+                        <!-- Owner Name -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="shopOwner" name="shopOwner" class="form-control form-control-lg" required />
+                            <label class="form-label">Owner Name</label>
+                        </div>
+
+                        <!-- Owner Contact -->
+                        <div class="form-outline mb-4">
+                            <input type="text" id="shopOwnerContact" name="shopOwnerContact" class="form-control form-control-lg" required />
+                            <label class="form-label">Owner Contact</label>
+                        </div>
+
+                        <!-- Owner Email -->
+                        <div class="form-outline mb-4">
+                            <input type="email" id="shopOwnerEmail" name="shopOwnerEmail" class="form-control form-control-lg" required />
+                            <label class="form-label">Owner Email</label>
                         </div>
 
                         <!-- NIC -->
                         <div class="form-outline mb-4">
-                            <input type="text" id="nic" class="form-control form-control-lg" required />
-                            <label class="form-label">NIC</label>
+                            <input type="text" id="shopOwnerNIC" name="shopOwnerNIC" class="form-control form-control-lg" required />
+                            <label class="form-label">Owner NIC</label>
                         </div>
 
                         <!-- DOB -->
                         <div class="form-outline mb-4">
-                            <input type="date" id="dob" class="form-control form-control-lg" required />
-                            <label class="form-label">Date of Birth</label>
+                            <input type="date" id="shopOwnerDOB" name="shopOwnerDOB" class="form-control form-control-lg" required />
+                            <label class="form-label">Owner DOB</label>
                         </div>
 
-                        <!-- Role (Optional or Hidden) -->
-                        <input type="hidden" id="role" value="USER" />
-
-                        <!-- Submit button -->
-                        <button type="button" id="register" class="btn btn-primary btn-lg btn-block">Register</button>
-
-                        <div class="divider d-flex align-items-center my-4">
-                            <p class="text-center fw-bold mx-3 mb-0 text-muted">OR</p>
-                        </div>
-
-                        <a class="btn btn-primary btn-lg btn-block" style="background-color: #3b5998" href="#!" role="button">
-                            <i class="fab fa-facebook-f me-2"></i>Continue with Facebook
-                        </a>
-                        <a class="btn btn-primary btn-lg btn-block" style="background-color: #55acee" href="#!" role="button">
-                            <i class="fab fa-twitter me-2"></i>Continue with Twitter
-                        </a>
+                        <button type="button" id="registerShop" class="btn btn-primary btn-lg btn-block">Register Shop</button>
                     </form>
                 </div>
             </div>
@@ -1369,7 +1369,7 @@
 <!-- Main JS -->
 <script src="../uren/assets/js/main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../uren/assets/js/registor.js"></script>
+<script src="../uren/assets/js/add-shop.js"></script>
 </body>
 
 

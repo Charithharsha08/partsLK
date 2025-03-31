@@ -17,7 +17,7 @@ public class Shop {
     private long shopId;
     private String shopName;
     private String shopAddress;
-    private String shopLocation;
+    //private String shopLocation;
     private String shopContact;
     @Column(unique = true)
     private String shopEmail;
@@ -26,8 +26,6 @@ public class Shop {
     private String shopOwnerEmail;
     private String shopOwnerNIC;
     private Date shopOwnerDOB;
-    private String shopOwnerPassword;
-    private String shopOwnerRole;
 
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "userId")
@@ -46,11 +44,10 @@ public class Shop {
     public Shop() {
     }
 
-    public Shop(long shopId, String shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, User user, List<Review> reviews, List<Item> items) {
+    public Shop(long shopId, String shopName, String shopAddress, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, User user, List<Review> reviews, List<Item> items) {
         this.shopId = shopId;
         this.shopName = shopName;
         this.shopAddress = shopAddress;
-        this.shopLocation = shopLocation;
         this.shopContact = shopContact;
         this.shopEmail = shopEmail;
         this.shopOwner = shopOwner;
@@ -58,8 +55,6 @@ public class Shop {
         this.shopOwnerEmail = shopOwnerEmail;
         this.shopOwnerNIC = shopOwnerNIC;
         this.shopOwnerDOB = shopOwnerDOB;
-        this.shopOwnerPassword = shopOwnerPassword;
-        this.shopOwnerRole = shopOwnerRole;
         this.user = user;
         this.reviews = reviews;
         this.items = items;
@@ -89,13 +84,7 @@ public class Shop {
         this.shopAddress = shopAddress;
     }
 
-    public String getShopLocation() {
-        return shopLocation;
-    }
 
-    public void setShopLocation(String shopLocation) {
-        this.shopLocation = shopLocation;
-    }
 
     public String getShopContact() {
         return shopContact;
@@ -151,22 +140,6 @@ public class Shop {
 
     public void setShopOwnerDOB(Date shopOwnerDOB) {
         this.shopOwnerDOB = shopOwnerDOB;
-    }
-
-    public String getShopOwnerPassword() {
-        return shopOwnerPassword;
-    }
-
-    public void setShopOwnerPassword(String shopOwnerPassword) {
-        this.shopOwnerPassword = shopOwnerPassword;
-    }
-
-    public String getShopOwnerRole() {
-        return shopOwnerRole;
-    }
-
-    public void setShopOwnerRole(String shopOwnerRole) {
-        this.shopOwnerRole = shopOwnerRole;
     }
 
     public User getUser() {

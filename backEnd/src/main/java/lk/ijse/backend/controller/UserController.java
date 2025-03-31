@@ -29,7 +29,6 @@ public class UserController {
     @GetMapping(value = "get")
     public ResponseEntity<ResponseDTO> getUserById( @RequestHeader("Authorization") @Valid String authHeader) {
         try {
-             // Optional: Extract just the token (remove "Bearer " prefix)
                 String token = authHeader.substring(7);
 
 

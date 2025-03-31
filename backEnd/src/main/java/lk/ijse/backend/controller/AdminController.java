@@ -1,6 +1,7 @@
 package lk.ijse.backend.controller;
 
 import lk.ijse.backend.DTO.ResponseDTO;
+import lk.ijse.backend.service.ShopService;
 import lk.ijse.backend.service.UserService;
 import lk.ijse.backend.util.VarList;
 import org.springframework.http.HttpStatus;
@@ -14,9 +15,11 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
 
     private final UserService userService;
+    private final ShopService shopService;
 
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService, ShopService shopService) {
         this.userService = userService;
+        this.shopService = shopService;
     }
 
     @GetMapping("/test1")
@@ -59,6 +62,32 @@ public class AdminController {
                     .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
         }
     }
+
+    @DeleteMapping("/delete/{shopId}")
+    @PreAuthorize("hasAuthority('ADMIN')")
+    public ResponseEntity<ResponseDTO> deleteShop(@PathVariable long shopId) {
+        try {
+            int res = shopService.deleteShop(shopId);
+            switch (res){
+                case VarList.OK -> {
+                    return ResponseEntity.status(HttpStatus.OK)
+                            .body(new ResponseDTO(VarList.OK, "Success", null));
+                }
+                case VarList.Not_Found -> {
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                            .body(new ResponseDTO(VarList.Not_Found, "Shop not Found", null));
+                }
+                default -> {
+                    return ResponseEntity.status(HttpStatus.BAD_GATEWAY)
+                            .body(new ResponseDTO(VarList.Bad_Gateway, "Error", null));
+                }
+            }
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+        }
+    }
+
 
 
 }

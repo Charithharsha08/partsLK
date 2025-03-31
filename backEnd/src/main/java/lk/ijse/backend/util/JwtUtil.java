@@ -13,6 +13,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.function.Function;
 
 
@@ -64,6 +65,7 @@ public class JwtUtil implements Serializable {
     //generate token for user
     public String generateToken(UserDTO userDTO) {
         Map<String, Object> claims = new HashMap<>();
+        claims.put("userId", userDTO.getUserId().toString());
         claims.put("role",userDTO.getRole());
         return doGenerateToken(claims, userDTO.getEmail());
     }
@@ -85,5 +87,24 @@ public class JwtUtil implements Serializable {
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+    }
+
+    public UserDTO getUserFromToken(String token) {
+        Claims claims = getAllClaimsFromToken(token);
+        System.out.println("Claims: " + claims);
+        UserDTO userDTO = new UserDTO();
+        try {
+            String userIdStr = (String) claims.get("userId");
+            if (userIdStr != null) {
+                userDTO.setUserId(UUID.fromString(userIdStr));
+            } else {
+                System.out.println("userId claim is null");
+            }
+        } catch (Exception e) {
+            System.out.println("Error parsing userId: " + e.getMessage());
+        }
+        userDTO.setEmail(claims.getSubject());
+        userDTO.setRole((String) claims.get("role"));
+        return userDTO;
     }
 }

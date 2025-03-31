@@ -14,8 +14,6 @@ public class ShopDTO {
     @NotBlank(message = "Shop address is required")
     @Size(min = 5, max = 100, message = "Shop address must contain 5-100 characters")
     private String shopAddress;
-    @NotBlank(message = "Shop location is required")
-    private String shopLocation;
     @Pattern(regexp = "^[0-9]{10}$", message = "Invalid phone number")
     private String shopContact;
     @Email(message = "Invalid email")
@@ -26,24 +24,19 @@ public class ShopDTO {
     private String shopOwnerContact;
     @Email
     private String shopOwnerEmail;
-    @Pattern(regexp = "^[0-9]{9}[vVxX]$", message = "Please provide a valid NIC")
+    //@Pattern(regexp = "^[0-9]{9}[vVxX]$", message = "Please provide a valid NIC")
     private String shopOwnerNIC;
     @NotNull(message = "Date of birth is required")
-    private LocalDate shopOwnerDOB;
-    @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$", message = "Password must contain at least one uppercase letter, one lowercase letter, one number and at least 8 characters")
-    private String shopOwnerPassword;
-    @NotBlank(message = "Role is required")
-    private String shopOwnerRole;
+    private Date shopOwnerDOB;
     private UserDTO userDTO;
 
     public ShopDTO() {
     }
 
-    public ShopDTO(long shopId, String shopName, String shopAddress, String shopLocation, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, LocalDate shopOwnerDOB, String shopOwnerPassword, String shopOwnerRole, UserDTO userDTO) {
+    public ShopDTO(long shopId, String shopName, String shopAddress, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, UserDTO userDTO) {
         this.shopId = shopId;
         this.shopName = shopName;
         this.shopAddress = shopAddress;
-        this.shopLocation = shopLocation;
         this.shopContact = shopContact;
         this.shopEmail = shopEmail;
         this.shopOwner = shopOwner;
@@ -51,8 +44,6 @@ public class ShopDTO {
         this.shopOwnerEmail = shopOwnerEmail;
         this.shopOwnerNIC = shopOwnerNIC;
         this.shopOwnerDOB = shopOwnerDOB;
-        this.shopOwnerPassword = shopOwnerPassword;
-        this.shopOwnerRole = shopOwnerRole;
         this.userDTO = userDTO;
     }
 
@@ -80,13 +71,6 @@ public class ShopDTO {
         this.shopAddress = shopAddress;
     }
 
-    public String getShopLocation() {
-        return shopLocation;
-    }
-
-    public void setShopLocation(String shopLocation) {
-        this.shopLocation = shopLocation;
-    }
 
     public String getShopContact() {
         return shopContact;
@@ -136,28 +120,12 @@ public class ShopDTO {
         this.shopOwnerNIC = shopOwnerNIC;
     }
 
-    public LocalDate getShopOwnerDOB() {
+    public Date getShopOwnerDOB() {
         return shopOwnerDOB;
     }
 
-    public void setShopOwnerDOB(LocalDate shopOwnerDOB) {
+    public void setShopOwnerDOB(Date shopOwnerDOB) {
         this.shopOwnerDOB = shopOwnerDOB;
-    }
-
-    public String getShopOwnerPassword() {
-        return shopOwnerPassword;
-    }
-
-    public void setShopOwnerPassword(String shopOwnerPassword) {
-        this.shopOwnerPassword = shopOwnerPassword;
-    }
-
-    public String getShopOwnerRole() {
-        return shopOwnerRole;
-    }
-
-    public void setShopOwnerRole(String shopOwnerRole) {
-        this.shopOwnerRole = shopOwnerRole;
     }
 
     public UserDTO getUserDTO() {

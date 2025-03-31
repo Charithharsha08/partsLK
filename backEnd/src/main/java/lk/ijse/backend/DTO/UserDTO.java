@@ -25,7 +25,7 @@ public class  UserDTO {
     private String address;
     //@Pattern(regexp = "^[0-9]{10}$", message = "Please provide a valid NIC")
     private String nic;
-    @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Please provide a valid date of birth")
+   // @Pattern(regexp = "^[0-9]{4}-[0-9]{2}-[0-9]{2}$", message = "Please provide a valid date of birth")
     private Date dob;
     @Pattern(regexp = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)[a-zA-Z\\d]{8,}$", message = "Password must contain at least one uppercase letter, one lowercase letter, one number and at least 8 characters")
     private String password;
@@ -116,5 +116,20 @@ public class  UserDTO {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDTO{" +
+                "userId=" + userId +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", address='" + address + '\'' +
+                ", nic='" + nic + '\'' +
+                ", dob=" + dob +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }
