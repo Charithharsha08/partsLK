@@ -74,6 +74,9 @@ public class ShopServiceImpl implements ShopService {
     @Override
     public ShopDTO findShop(UserDTO userDTO) {
        Shop shop =  shopRepository.findShopByUser(modelMapper.map(userDTO , User.class));
-       return new ShopDTO();
+         if (shop != null){
+              return modelMapper.map(shop , ShopDTO.class);
+    }
+        return null;
     }
 }

@@ -26,9 +26,8 @@ public class ItemController {
     @PostMapping("/save")
     public ResponseEntity<ResponseDTO> saveItem(@ModelAttribute ItemDTO itemDTO, @RequestParam("image") MultipartFile image) {
         try {
-            String imagePath = FileUploadUtil.uploadFile("assets.image.itemImages/", image.getOriginalFilename(), image);
-            System.out.println(imagePath);
-            itemDTO.setItemImage(imagePath);
+            String imagePath = FileUploadUtil.uploadFile("item-Images/", image.getOriginalFilename(), image);
+            itemDTO.setItemImage("assets/images/item-Images/" + imagePath);
             int res = itemService.addItem(itemDTO);
             switch (res) {
                 case VarList.Created -> {
@@ -61,8 +60,11 @@ public class ItemController {
     public ResponseEntity<ResponseDTO> updateItem(@ModelAttribute ItemDTO itemDTO, @RequestParam(value = "image", required = false) MultipartFile image) {
         try {
             if (image != null) {
-                String imagePath = FileUploadUtil.uploadFile("item-images/", image.getOriginalFilename(), image);
-                itemDTO.setItemImage(imagePath);
+                String imagePath = FileUploadUtil.uploadFile("item-Images/", image.getOriginalFilename(), image);
+                System.out.println("ssaaa" + imagePath);
+                itemDTO.setItemImage("assets/images/item-Images/" + imagePath);
+
+                System.out.println(" meka print une "+itemDTO.getItemImage());
             }
            int res = itemService.updateItem(itemDTO);
             switch (res) {
