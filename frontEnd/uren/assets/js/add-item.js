@@ -62,21 +62,34 @@ $("#addItem").click(function (e) {
                     text: 'Item has been added successfully.',
                     confirmButtonText: 'Okay'
                 }).then(() => {
-                    window.location.href = "../../index.html";
+                    window.location.href = "../index.html";
                 });
             }
         },
         error: function (xhr) {
-            let data = xhr.responseJSON?.data;
-            console.log("Error Response:", data);
+            console.log("Full Error Response:", xhr);
 
-            let errorMessage = data?.itemName || data?.itemPrice || data?.itemDescription || "Failed to add item.";
+            console.log(xhr.responseJSON);
 
-            // Check if the error is due to file size
-            if (xhr.status === 413) {
+            let errorMessage = "Failed to add item."; // Default message
+
+            // Check if the response contains a message
+            if (xhr.responseJSON?.message) {
+                errorMessage = xhr.responseJSON.message; // Use the backend message
+            } else if (xhr.status === 413) {
                 errorMessage = "File size exceeds the maximum upload limit! Please upload a smaller file.";
+            } else if (xhr.status === 406) {
+                errorMessage = "Not Acceptable! The request could not be processed.";
+            } else if (xhr.status === 0) {
+                errorMessage = "Failed to connect to the server. Possible CORS issue or server down!";
+            } else if (xhr.status === 403) {
+                errorMessage = "You are not authorized to perform this action.";
+            } else if (xhr.status === 404) {
+                errorMessage = "API endpoint not found! Check the server URL.";
+            } else if (xhr.status === 500) {
+                errorMessage = "Internal Server Error! Please try again later.";
             }
-
+            // Show the error in a SweetAlert popup
             Swal.fire({
                 icon: 'error',
                 title: 'Item Add Failed!',
@@ -85,5 +98,7 @@ $("#addItem").click(function (e) {
             });
         }
     });
-});
+        });
+
+
 
