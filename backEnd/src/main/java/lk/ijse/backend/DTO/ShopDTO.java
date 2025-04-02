@@ -20,7 +20,7 @@ public class ShopDTO {
     private String shopEmail;
     @NotBlank
     private String shopOwner;
-    @Pattern(regexp = "^[0-9]{10}$", message = "Invalid phone number")
+//    @Pattern(regexp = "^[0-9]{10}$", message = "Invalid phone number")
     private String shopOwnerContact;
     @Email
     private String shopOwnerEmail;

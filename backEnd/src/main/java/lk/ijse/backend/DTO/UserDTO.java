@@ -13,7 +13,6 @@ import java.sql.Date;
 import java.util.UUID;
 
 public class  UserDTO {
-    private UUID userId;
     @NotBlank(message = "Name is required")
     private String name;
     @Email(message = "Please provide a valid email address")
@@ -34,8 +33,7 @@ public class  UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(UUID userId, String name, String email, String mobile, String address, String nic, Date dob, String password, String role) {
-        this.userId = userId;
+    public UserDTO( String name, String email, String mobile, String address, String nic, Date dob, String password, String role) {
         this.name = name;
         this.email = email;
         this.mobile = mobile;
@@ -44,14 +42,6 @@ public class  UserDTO {
         this.dob = dob;
         this.password = password;
         this.role = role;
-    }
-
-    public UUID getUserId() {
-        return userId;
-    }
-
-    public void setUserId(UUID userId) {
-        this.userId = userId;
     }
 
     public String getName() {
@@ -121,7 +111,6 @@ public class  UserDTO {
     @Override
     public String toString() {
         return "UserDTO{" +
-                "userId=" + userId +
                 ", name='" + name + '\'' +
                 ", email='" + email + '\'' +
                 ", mobile='" + mobile + '\'' +

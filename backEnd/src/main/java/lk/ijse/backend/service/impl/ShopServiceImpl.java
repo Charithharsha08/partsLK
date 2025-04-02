@@ -8,9 +8,11 @@ import lk.ijse.backend.repo.ShopRepository;
 import lk.ijse.backend.service.ShopService;
 import lk.ijse.backend.util.VarList;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -77,6 +79,12 @@ public class ShopServiceImpl implements ShopService {
          if (shop != null){
               return modelMapper.map(shop , ShopDTO.class);
     }
+        return null;
+    }
+
+    @Override
+    public List<ShopDTO> findAllShops() {
+      //  return modelMapper.map(shopRepository.findAll(),new TypeToken<List<ShopDTO>>(){});
         return null;
     }
 }

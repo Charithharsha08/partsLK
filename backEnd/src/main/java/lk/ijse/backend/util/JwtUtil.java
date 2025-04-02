@@ -65,7 +65,6 @@ public class JwtUtil implements Serializable {
     //generate token for user
     public String generateToken(UserDTO userDTO) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userId", userDTO.getUserId().toString());
         claims.put("role",userDTO.getRole());
         return doGenerateToken(claims, userDTO.getEmail());
     }
@@ -96,7 +95,6 @@ public class JwtUtil implements Serializable {
         try {
             String userIdStr = (String) claims.get("userId");
             if (userIdStr != null) {
-                userDTO.setUserId(UUID.fromString(userIdStr));
             } else {
                 System.out.println("userId claim is null");
             }

@@ -4,6 +4,7 @@ package lk.ijse.backend.service;
 import lk.ijse.backend.DTO.ShopDTO;
 import lk.ijse.backend.DTO.UserDTO;
 
+import java.util.List;
 import java.util.UUID;
 
 public interface ShopService {
@@ -12,4 +13,5 @@ public interface ShopService {
      int deleteShop(long shopId);
      int updateShop(ShopDTO shopDTO);
      ShopDTO findShop(UserDTO userDTO);
+     List<ShopDTO> findAllShops();
 }

@@ -11,6 +11,8 @@ import lk.ijse.backend.util.VarList;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/shop")
 @CrossOrigin
@@ -22,6 +24,14 @@ public class ShopController {
         this.shopService = shopService;
         this.jwtUtil = jwtUtil;
     }
+
+    @GetMapping("/all")
+    public ResponseEntity<ResponseDTO> getAllShops(@RequestHeader ("Authorization") String authHeader) {
+        String username = jwtUtil.getUsernameFromToken(authHeader);
+
+       List<ShopDTO> shopDTOS = shopService.findAllShops();
+       return ResponseEntity.ok(new ResponseDTO(VarList.OK,"Success",shopDTOS));
+     }
 
 
     @PostMapping("/save")
