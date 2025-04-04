@@ -67,7 +67,7 @@ public class ShopServiceImpl implements ShopService {
             Shop shop = modelMapper.map(shopDTO, Shop.class);
             shop.setUser(user);
             shopRepository.save(shop);
-            return VarList.Created;
+            return VarList.OK;
         } else {
             return VarList.Not_Found;
         }

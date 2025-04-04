@@ -88,8 +88,8 @@
                 <div class="row">
                     <div class="col-xl-3 col-lg-2 col-md-3 col-sm-5">
                         <div class="header-logo_area">
-                            <a href="index.html">
-                                <img src="uren/assets/images/menu/logo/Parts%20LK%20Logo%202%20Parts-2.png" alt="partsLk Logo">
+                            <a href="../index.html">
+                                <img src="../uren/assets/images/menu/logo/Parts%20LK%20Logo%202%20Parts-2.png" alt="partsLk Logo">
                             </a>
                         </div>
                     </div>
@@ -279,8 +279,8 @@
                     </div>
                     <div class="col-sm-3 d-block d-lg-none">
                         <div class="header-logo_area header-sticky_logo">
-                            <a href="index.html">
-                                <img src="uren/assets/images/menu/logo/Parts%20LK%20Logo%202%20Parts-2.png" alt="partslk Logo">
+                            <a href="../index.html">
+                                <img src="../uren/assets/images/menu/logo/Parts%20LK%20Logo%202%20Parts-2.png" alt="partslk Logo">
                             </a>
                         </div>
                     </div>
@@ -325,10 +325,10 @@
                             <a class="product-item_remove" href="javascript:void(0)"><i
                                     class="ion-android-close"></i></a>
                             <div class="product-item_img">
-                                <img src="uren/assets/images/product/small-size/1.jpg" alt="Uren's Product Image">
+                                <img src="../uren/assets/images/product/small-size/1.jpg" alt="Uren's Product Image">
                             </div>
                             <div class="product-item_content">
-                                <a class="product-item_title" href="pages/shop-right-sidebar.html">Autem ipsa ad</a>
+                                <a class="product-item_title" href="../pages/item-right-sidebar.html">Autem ipsa ad</a>
                                 <span class="product-item_quantity">1 x $145.80</span>
                             </div>
                         </li>
@@ -336,10 +336,10 @@
                             <a class="product-item_remove" href="javascript:void(0)"><i
                                     class="ion-android-close"></i></a>
                             <div class="product-item_img">
-                                <img src="uren/assets/images/product/small-size/2.jpg" alt="Uren's Product Image">
+                                <img src="../uren/assets/images/product/small-size/2.jpg" alt="Uren's Product Image">
                             </div>
                             <div class="product-item_content">
-                                <a class="product-item_title" href="pages/shop-right-sidebar.html">Tenetur illum amet</a>
+                                <a class="product-item_title" href="../pages/item-right-sidebar.html">Tenetur illum amet</a>
                                 <span class="product-item_quantity">1 x $150.80</span>
                             </div>
                         </li>
@@ -347,10 +347,10 @@
                             <a class="product-item_remove" href="javascript:void(0)"><i
                                     class="ion-android-close"></i></a>
                             <div class="product-item_img">
-                                <img src="uren/assets/images/product/small-size/3.jpg" alt="Uren's Product Image">
+                                <img src="../uren/assets/images/product/small-size/3.jpg" alt="Uren's Product Image">
                             </div>
                             <div class="product-item_content">
-                                <a class="product-item_title" href="pages/shop-right-sidebar.html">Non doloremque placeat</a>
+                                <a class="product-item_title" href="../pages/item-right-sidebar.html">Non doloremque placeat</a>
                                 <span class="product-item_quantity">1 x $165.80</span>
                             </div>
                         </li>
@@ -361,10 +361,10 @@
                     <span class="ammount">$462.4‬0</span>
                 </div>
                 <div class="minicart-btn_area">
-                    <a href="pages/cart.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Minicart</a>
+                    <a href="../pages/cart.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Minicart</a>
                 </div>
                 <div class="minicart-btn_area">
-                    <a href="pages/checkout.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Checkout</a>
+                    <a href="../pages/checkout.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Checkout</a>
                 </div>
             </div>
         </div>
@@ -381,10 +381,10 @@
                     <nav class="offcanvas-navigation">
                         <ul class="mobile-menu">
                             <ul>
-                                <li class="dropdown-holder active"><a href="index.html">Home</a>
+                                <li class="dropdown-holder active"><a href="../index.html">Home</a>
 
                                 </li>
-                                <li class="megamenu-holder "><a href="pages/shop-right-sidebar.html">Shop </a>
+                                <li class="megamenu-holder "><a href="../pages/item-right-sidebar.html">Shop </a>
                                 </li>
                                 <li><a href="pages/garage.html">Garages</a></li>
                                 <li class=""><a href="javascript:void(0)">Pages <i
@@ -504,6 +504,10 @@
                             <li class="nav-item">
                                 <a class="nav-link" id="shop-details-tab" data-toggle="tab" href="#shop-details"
                                    role="tab" aria-controls="shop-details" aria-selected="false">Shop Details</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="shop-all-product-tab" data-toggle="tab" href="#shop-all-product"
+                                   role="tab" aria-controls="shop-all-product" aria-selected="false">Shop All Product</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" id="add-item" href=add-item.html role="tab"
@@ -1184,12 +1188,16 @@
                     <form action="#" class="uren-form">
                         <div class="uren-form-inner">
                             <div class="single-input single-input-half">
+                                <label for="shop-id">Shop Id*</label>
+                                <input type="text" id="shop-id" required>
+                            </div>
+                            <div class="single-input single-input-half">
                                 <label for="shop-name">Shop Name*</label>
-                                <input type="text" id="shop-name">
+                                <input type="text" id="shop-name" required>
                             </div>
                             <div class="single-input">
                                 <label for="shop-address">Shop Address*</label>
-                                <input type="text" id="shop-address">
+                                <input type="text" id="shop-address" readonly>
                             </div>
                             <div class="single-input">
                                 <label for="shop-contact">Shop Contact*</label>
@@ -1197,7 +1205,7 @@
                             </div>
                             <div class="single-input">
                                 <label for="shop-email">Shop Email*</label>
-                                <input type="email" id="shop-email">
+                                <input type="email" id="shop-email" disabled>
                             </div>
                             <div class="single-input">
                                 <label for="shop-owner">Shop Owner*</label>
@@ -1220,13 +1228,20 @@
                                 <input type="date" id="shop-owner-dob">
                             </div>
                             <div class="single-input">
-                                <button class="uren-btn uren-btn_dark" type="button" id="save-shop"><span>SAVE SHOP DETAILS</span></button>
+                                <button class="uren-btn uren-btn_dark" type="button" id="update-shop"><span>UPDATE SHOP DETAILS</span></button>
                             </div>
                         </div>
 
                     </form>
                 </div>
             </div>
+
+                            <div class="tab-pane fade" id="shop-all-product" role="tabpanel"
+                                 aria-labelledby="account-shop-all-product-tab">
+                                <div class="shop-all-product">
+                                </div>
+                            </div>
+
         </div>
 </div>
 </div>
@@ -1474,6 +1489,8 @@
 <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
 <script src="../../dist/js/adminlte.js"></script>
 <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+
+<script src="../uren/assets/js/my-shop.js"></script>
 <script>
     const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
     const Default = {

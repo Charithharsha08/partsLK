@@ -87,22 +87,4 @@ public class JwtUtil implements Serializable {
         final String username = getUsernameFromToken(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
-
-    public UserDTO getUserFromToken(String token) {
-        Claims claims = getAllClaimsFromToken(token);
-        System.out.println("Claims: " + claims);
-        UserDTO userDTO = new UserDTO();
-        try {
-            String userIdStr = (String) claims.get("userId");
-            if (userIdStr != null) {
-            } else {
-                System.out.println("userId claim is null");
-            }
-        } catch (Exception e) {
-            System.out.println("Error parsing userId: " + e.getMessage());
-        }
-        userDTO.setEmail(claims.getSubject());
-        userDTO.setRole((String) claims.get("role"));
-        return userDTO;
-    }
 }

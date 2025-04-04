@@ -1,6 +1,7 @@
 package lk.ijse.backend.controller;
 
 import lk.ijse.backend.DTO.UserDTO;
+import lk.ijse.backend.service.UserService;
 import lk.ijse.backend.util.JwtUtil;
 import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
@@ -18,10 +19,12 @@ import java.util.List;
 @CrossOrigin
 public class ShopController {
     private final ShopService shopService;
+    private final UserService userService;
     private final JwtUtil jwtUtil;
 
-    public ShopController(ShopService shopService, JwtUtil jwtUtil) {
+    public ShopController(ShopService shopService, UserService userService, JwtUtil jwtUtil) {
         this.shopService = shopService;
+        this.userService = userService;
         this.jwtUtil = jwtUtil;
     }
 
@@ -43,11 +46,11 @@ public class ShopController {
             String token = authHeader.substring(7);
             System.out.println(token);
 
-            UserDTO userDTO = jwtUtil.getUserFromToken(token);
 
-            System.out.println("User" +  userDTO.toString());
-
+            String username = jwtUtil.getUsernameFromToken(token);
+            UserDTO userDTO = userService.searchUser(username);
             shopDTO.setUserDTO(userDTO);
+            System.out.println(userDTO);
 
             int res = shopService.saveShop(shopDTO);
             switch (res){
@@ -71,13 +74,22 @@ public class ShopController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<ResponseDTO> updateShop(@Valid @RequestBody ShopDTO shopDTO) {
+    public ResponseEntity<ResponseDTO> updateShop(@Valid @RequestBody ShopDTO shopDTO , @RequestHeader ("Authorization") String authHeader) {
         try {
+            String token = authHeader.substring(7);
+            System.out.println(token);
+
+
+            String username = jwtUtil.getUsernameFromToken(token);
+            UserDTO userDTO = userService.searchUser(username);
+            shopDTO.setUserDTO(userDTO);
+            System.out.println(userDTO);
+
             int res = shopService.updateShop(shopDTO);
             switch (res){
-                case VarList.Created -> {
-                    return ResponseEntity.status(HttpStatus.CREATED)
-                            .body(new ResponseDTO(VarList.Created, "Success", null));
+                case VarList.OK -> {
+                    return ResponseEntity.status(HttpStatus.OK)
+                            .body(new ResponseDTO(VarList.OK, "Success", null));
                 }
                 case VarList.Not_Acceptable -> {
                     return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
@@ -98,7 +110,11 @@ public class ShopController {
     public ResponseEntity<ResponseDTO> searchShop(@RequestHeader("Authorization") String authHeader) {
         try {
             String token = authHeader.substring(7);
-            UserDTO userDTO = jwtUtil.getUserFromToken(token);
+
+            String userName = jwtUtil.getUsernameFromToken(token);
+            UserDTO userDTO = userService.searchUser(userName);
+
+            System.out.println(userDTO);
 
             ShopDTO shopDTO = shopService.findShop(userDTO);
             if (shopDTO != null) {
