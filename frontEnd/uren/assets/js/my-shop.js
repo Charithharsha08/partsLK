@@ -23,19 +23,30 @@ $(document).ready(function () {
                         $("#shop-owner-email").val(response.data.shopOwnerEmail)
                 $("#shop-owner-nic").val(response.data.shopOwnerNIC)
                 $("#shop-owner-dob").val(response.data.shopOwnerDOB)
-
-
-
-
-
             } else {
-;
+
             }
         },
         error: function (error) {
             console.log("Error fetching user:", error);
         }
     });
+
+    $.ajax({
+        url: "http://localhost:8082/api/v1/item",
+        method: "GET",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        success: function (response) {
+            console.log(response);
+            },
+        error: function (error) {
+            console.log("Error fetching user:", error);
+        }
+    });
+
 });
 
 $("#update-shop").click(function (e) {
