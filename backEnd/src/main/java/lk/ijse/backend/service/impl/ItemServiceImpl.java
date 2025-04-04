@@ -6,9 +6,11 @@ import lk.ijse.backend.repo.ItemRepository;
 import lk.ijse.backend.service.ItemService;
 import lk.ijse.backend.util.VarList;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -61,7 +63,7 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public List<ItemDTO> getAllItems() {
         List<Item> itemList = itemRepository.findAll();
-        return modelMapper.map(itemList, List.class);
+        return modelMapper.map(itemList,new TypeToken<List<ItemDTO>>(){}.getType());
     }
 
     @Override
@@ -71,5 +73,11 @@ public class ItemServiceImpl implements ItemService {
         } else {
             return null;
         }
+    }
+
+    @Override
+    public List<ItemDTO> searchItemByShop(long shopId) {
+        List<Item> itemList = itemRepository.findItemByShop_ShopId(shopId);
+        return modelMapper.map(itemList,new TypeToken<List<ItemDTO>>(){}.getType());
     }
 }

@@ -12,9 +12,11 @@ import lk.ijse.backend.repo.UserRepository;
 import lk.ijse.backend.service.ReviewService;
 import lk.ijse.backend.util.VarList;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -47,5 +49,16 @@ public class ReviewServiceImpl implements ReviewService {
             return VarList.Bad_Gateway;
         }
     }
+
+    @Override
+    public List<ReviewDTO> getAllReviewsByShopId(long shopId) {
+        return modelMapper.map(reviewRepository.findReviewsByShop_ShopId(shopId),new TypeToken<List<ReviewDTO>>(){}.getType());
+    }
+
+    @Override
+    public List<ReviewDTO> getAllReviewsByServiceId(long serviceId) {
+        return modelMapper.map(reviewRepository.findReviewsByServices_ServiceId(serviceId),new TypeToken<List<ReviewDTO>>(){}.getType());
+    }
+
 
 }

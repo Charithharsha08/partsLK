@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/item")
@@ -97,8 +98,15 @@ public class ItemController {
                     .body(new ResponseDTO(VarList.Not_Found, "Item Not Found", null));
         }
     }
-    @GetMapping("/check")
-    public String check(){
-        return "passed~!";
+    @GetMapping("/all")
+    public ResponseEntity<ResponseDTO> getAllItems(@RequestHeader ("Authorization") String authHeader) {
+        List<ItemDTO> allItems = itemService.getAllItems();
+        return ResponseEntity.ok(new ResponseDTO(VarList.OK, "Success", allItems));
+    }
+
+    @GetMapping("/single-shop-all-item")
+    public ResponseEntity<ResponseDTO> getSingleShopAllItems(@RequestHeader ("Authorization") String authHeader) {
+        List<ItemDTO> allItems = itemService.getAllItems();
+        return ResponseEntity.ok(new ResponseDTO(VarList.OK, "Success", allItems));
     }
 }

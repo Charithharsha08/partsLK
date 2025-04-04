@@ -11,5 +11,6 @@ public interface ItemService {
     ItemDTO searchItem(long itemId);
     List<ItemDTO> getAllItems();
     ItemDTO searchItemByName(String itemName);
+    List<ItemDTO> searchItemByShop(long shopId);
 
 }
