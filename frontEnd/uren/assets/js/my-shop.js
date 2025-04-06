@@ -56,7 +56,6 @@ $(document).ready(function () {
                     <p class="text-muted">Fuel Type: ${item.fuelType}</p>
                     <p class="text-muted">Qty: ${item.itemQty}</p>
                     <p><strong>Price:</strong> ${item.itemPrice}.00</p>
-                    <p><strong>Shop ID:</strong> ${item.shopId}</p>
                 </div>
                 <div class="card-footer bg-white d-grid gap-2">
                     <button type="button" class="btn btn-warning update-btn" data-bs-toggle="modal" data-bs-target="#updateModal"
@@ -289,6 +288,7 @@ $(document).on("click", "#update-item", function (e) {
     e.preventDefault();
     const formData = new FormData($('#item-inputs')[0]);
     console.log("shop id "  + $("#shopId").val());
+
 
     // Append shopId manually
     formData.append("shopId", $("#shopId").val());

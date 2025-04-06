@@ -60,11 +60,27 @@ public class ItemController {
     @PutMapping("/update")
     public ResponseEntity<ResponseDTO> updateItem(@ModelAttribute ItemDTO itemDTO, @RequestParam(value = "image", required = false) MultipartFile image) {
         try {
-            if (image != null) {
+            ItemDTO findItemInDB = itemService.searchItem(itemDTO.getItemId());
+
+            if (image != null && !image.isEmpty()) {
+                System.out.println("load image upload");
                 String imagePath = FileUploadUtil.uploadFile("item-Images/", image.getOriginalFilename(), image);
-                itemDTO.setItemImage("assets/images/item-Images/" + imagePath);
+                findItemInDB.setItemImage("assets/images/item-Images/" + imagePath);
             }
-           int res = itemService.updateItem(itemDTO);
+
+            findItemInDB.setItemId(itemDTO.getItemId());
+            findItemInDB.setItemName(itemDTO.getItemName());
+            findItemInDB.setItemDescription(itemDTO.getItemDescription());
+            findItemInDB.setVehicleModel(itemDTO.getVehicleModel());
+            findItemInDB.setFuelType(itemDTO.getFuelType());
+            findItemInDB.setItemPrice(itemDTO.getItemPrice());
+            findItemInDB.setItemQty(itemDTO.getItemQty());
+            findItemInDB.setShopId(itemDTO.getShopId());
+
+
+            System.out.println(" aluth object eke image path eka " +findItemInDB.getItemImage());
+
+           int res = itemService.updateItem(findItemInDB);
             switch (res) {
                 case VarList.OK -> {
                     return ResponseEntity.status(HttpStatus.OK)
