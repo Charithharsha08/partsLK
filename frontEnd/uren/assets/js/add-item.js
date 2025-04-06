@@ -62,7 +62,7 @@ $("#addItem").click(function (e) {
                     text: 'Item has been added successfully.',
                     confirmButtonText: 'Okay'
                 }).then(() => {
-                    window.location.href = "../../../pages/my-shop.html";
+                    window.location.href = "../pages/my-shop.html";
                 });
             }
         },

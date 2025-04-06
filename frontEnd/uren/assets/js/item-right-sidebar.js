@@ -40,7 +40,7 @@ $(document).ready(function () {
                                                 <div class="product-desc_info">
                                                     <h6><a class="product-name" href="../../../pages/single-product-sale.html">${item.itemName}</a></h6>
                                                     <div class="price-box">
-                                                        <span class="new-price">$122.00</span>
+                                                        <span class="new-price">${item.itemPrice}</span>
                                                     </div>
                                                 </div>
                                             </div>

@@ -62,10 +62,7 @@ public class ItemController {
         try {
             if (image != null) {
                 String imagePath = FileUploadUtil.uploadFile("item-Images/", image.getOriginalFilename(), image);
-                System.out.println("ssaaa" + imagePath);
                 itemDTO.setItemImage("assets/images/item-Images/" + imagePath);
-
-                System.out.println(" meka print une "+itemDTO.getItemImage());
             }
            int res = itemService.updateItem(itemDTO);
             switch (res) {
@@ -105,8 +102,8 @@ public class ItemController {
     }
 
     @GetMapping("/single-shop-all-item")
-    public ResponseEntity<ResponseDTO> getSingleShopAllItems(@RequestHeader ("Authorization") String authHeader) {
-        List<ItemDTO> allItems = itemService.getAllItems();
+    public ResponseEntity<ResponseDTO> getSingleShopAllItems(@RequestHeader ("Authorization") String authHeader,@RequestParam long shopId) {
+        List<ItemDTO> allItems = itemService.searchItemByShop(shopId);
         return ResponseEntity.ok(new ResponseDTO(VarList.OK, "Success", allItems));
     }
 }

@@ -37,6 +37,8 @@ public class ShopController {
      }
 
 
+
+
     @PostMapping("/save")
     public ResponseEntity<ResponseDTO> saveShop(@Valid @RequestBody ShopDTO shopDTO, @RequestHeader ("Authorization") String authHeader) {
         System.out.println("method called");
@@ -114,7 +116,6 @@ public class ShopController {
             String userName = jwtUtil.getUsernameFromToken(token);
             UserDTO userDTO = userService.searchUser(userName);
 
-            System.out.println(userDTO);
 
             ShopDTO shopDTO = shopService.findShop(userDTO);
             if (shopDTO != null) {

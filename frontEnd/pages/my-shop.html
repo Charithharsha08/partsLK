@@ -75,7 +75,25 @@
     <link rel="stylesheet" href="../uren/assets/css/style.css">
     <!--<link rel="stylesheet" href="assets/css/style.min.css">-->
 
-</head>
+<style>
+    .product-image {
+    width: 150px;  /* Set fixed width */
+    height: 150px; /* Set fixed height */
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-card {
+    width: 18rem;
+    transition: transform 0.3s ease-in-out;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+</style>
+
+        </head>
 
 <body class="template-color-1">
 
@@ -483,6 +501,7 @@
         </div>
     </div>
     <!-- Uren's Breadcrumb Area End Here -->
+
     <!-- Begin Uren's Page Content Area -->
     <main class="page-content">
         <!-- Begin Uren's Account Page Area -->
@@ -1236,43 +1255,95 @@
                 </div>
             </div>
 
-                            <div class="tab-pane fade" id="shop-all-product" role="tabpanel"
-                                 aria-labelledby="account-shop-all-product-tab">
+                            <div class="tab-pane fade" id="shop-all-product" role="tabpanel" aria-labelledby="account-shop-all-product-tab">
                                 <div class="shop-all-product">
                                     <div class="container mt-4">
-                                        <div class="row g-4"> <!-- Bootstrap Grid Row -->
-
-                                            <!-- Product Card 1 -->
-                                            <div class="col-md-3"> <!-- Each card takes 3 columns (4 cards per row) -->
-                                                <div class="card shadow-lg border-0 rounded">
-                                                    <div class="text-center p-3">
-                                                        <img src="https://via.placeholder.com/250" class="img-fluid" alt="Product Image">
-                                                    </div>
-                                                    <div class="card-body">
-                                                        <h5 class="card-title fw-bold">GIGABYTE Motherboard</h5>
-                                                        <p class="text-muted">B550M AORUS ELITE - Ryzen 5000/4000/3000 Series</p>
-                                                        <p><strong>Price:</strong> 48,000.00</p>
-                                                    </div>
-                                                    <div class="card-footer bg-white d-grid gap-2">
-                                                        <button class="btn btn-warning text-white">Update</button>
-                                                        <button class="btn btn-danger">Delete</button>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-
+                                        <div class="row g-4 all-product-in-shop justify-content-start"> <!-- Aligns left with equal spacing -->
+                                            <!-- Dynamically loaded product cards will be appended here -->
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-        </div>
+
+                        </div>
 </div>
 </div>
 </div>
 </div>
 <!-- Uren's Account Page Area End Here -->
-</main>
+
+        <!-- Modal -->
+        <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true" data-bs-backdrop="static">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="updateModalLabel">Update Item</h1>
+                    </div>
+                    <div class="modal-body">
+                        <form id="item-inputs">
+                            <div class="form-outline mb-4">
+                                <input type="text" id="itemId" name="itemId" class="form-control form-control-lg" readonly />
+                                <label class="form-label">Item Id</label>
+                            </div>
+
+                            <div class="form-outline mb-4">
+                                <input type="text" id="itemName" name="itemName" class="form-control form-control-lg" required minlength="3" maxlength="50" />
+                                <label class="form-label">Item Name</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="itemDescription" name="itemDescription" class="form-control form-control-lg" required />
+                                <label class="form-label">Item Description</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="vehicleModel" name="vehicleModel" class="form-control form-control-lg" required />
+                                <label class="form-label">Vehicle Model</label>
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label d-block">Fuel Type</label>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="fuelType" id="petrol" value="Petrol" required />
+                                    <label class="form-check-label" for="petrol">Petrol</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="fuelType" id="diesel" value="Diesel" required />
+                                    <label class="form-check-label" for="diesel">Diesel</label>
+                                </div>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="itemPrice" name="itemPrice" class="form-control form-control-lg" required />
+                                <label class="form-label">Item Price</label>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <input type="text" id="itemQty" name="itemQty" class="form-control form-control-lg" required />
+                                <label class="form-label">Item Quantity</label>
+                            </div>
+
+                            <!-- Modern File Input for Item Image -->
+                            <div class="mb-4">
+                                <label class="form-label d-block">Item Image</label>
+                                <div class="custom-file">
+                                    <input type="file" id="itemImage" name="image" class="custom-file-input" accept="image/*" required />
+                                    <label class="custom-file-label" for="itemImage">Choose Image</label>
+                                </div>
+                            </div>
+
+                            <!-- Shop ID -->
+                            <input type="hidden" id="shopId" />
+
+                        </form>
+                    </div>
+
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="uren-btn uren-btn_dark" id="update-item">Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
 <!-- Uren's Page Content Area End Here -->
 <!-- Begin Uren's Footer Area -->
 <div class="uren-footer_area">
