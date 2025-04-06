@@ -14,4 +14,5 @@ public interface ShopService {
      int updateShop(ShopDTO shopDTO);
      ShopDTO findShop(UserDTO userDTO);
      List<ShopDTO> findAllShops();
+     ShopDTO searchShopById(long shopId);
 }

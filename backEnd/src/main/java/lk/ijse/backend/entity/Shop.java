@@ -41,23 +41,12 @@ public class Shop {
             mappedBy = "shop")
     private List<Item> items = new ArrayList<>();
 
-    public Shop() {
-    }
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "shop")
+    private List<Item> carts = new ArrayList<>();
 
-    public Shop(long shopId, String shopName, String shopAddress, String shopContact, String shopEmail, String shopOwner, String shopOwnerContact, String shopOwnerEmail, String shopOwnerNIC, Date shopOwnerDOB, User user, List<Review> reviews, List<Item> items) {
-        this.shopId = shopId;
-        this.shopName = shopName;
-        this.shopAddress = shopAddress;
-        this.shopContact = shopContact;
-        this.shopEmail = shopEmail;
-        this.shopOwner = shopOwner;
-        this.shopOwnerContact = shopOwnerContact;
-        this.shopOwnerEmail = shopOwnerEmail;
-        this.shopOwnerNIC = shopOwnerNIC;
-        this.shopOwnerDOB = shopOwnerDOB;
-        this.user = user;
-        this.reviews = reviews;
-        this.items = items;
+    public Shop() {
     }
 
     public long getShopId() {
@@ -83,8 +72,6 @@ public class Shop {
     public void setShopAddress(String shopAddress) {
         this.shopAddress = shopAddress;
     }
-
-
 
     public String getShopContact() {
         return shopContact;
@@ -164,5 +151,13 @@ public class Shop {
 
     public void setItems(List<Item> items) {
         this.items = items;
+    }
+
+    public List<Item> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(List<Item> carts) {
+        this.carts = carts;
     }
 }

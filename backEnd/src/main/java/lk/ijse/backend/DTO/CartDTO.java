@@ -2,21 +2,26 @@ package lk.ijse.backend.DTO;
 
 public class CartDTO {
     private long cartId;
-    private long userId;
+    private UserDTO userDTO;
     private long itemId;
     private String name;
     private String image;
     private int qty;
     private double price;
+    private ShopDTO shopDTO;
 
-    public CartDTO(long cartId, long userId, long itemId, String name, String image, int qty, double price) {
+    public CartDTO() {
+    }
+
+    public CartDTO(long cartId, UserDTO userDTO, long itemId, String name, String image, int qty, double price, ShopDTO shopDTO) {
         this.cartId = cartId;
-        this.userId = userId;
+        this.userDTO = userDTO;
         this.itemId = itemId;
         this.name = name;
         this.image = image;
         this.qty = qty;
         this.price = price;
+        this.shopDTO = shopDTO;
     }
 
     public long getCartId() {
@@ -27,12 +32,12 @@ public class CartDTO {
         this.cartId = cartId;
     }
 
-    public long getUserId() {
-        return userId;
+    public UserDTO getUserDTO() {
+        return userDTO;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
+    public void setUserDTO(UserDTO userDTO) {
+        this.userDTO = userDTO;
     }
 
     public long getItemId() {
@@ -73,5 +78,13 @@ public class CartDTO {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public ShopDTO getShopDTO() {
+        return shopDTO;
+    }
+
+    public void setShopDTO(ShopDTO shopDTO) {
+        this.shopDTO = shopDTO;
     }
 }

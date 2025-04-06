@@ -44,11 +44,16 @@ public class User {
             mappedBy = "user")
     private List<Shop> shops;
 
+    @OneToMany(cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY,
+            mappedBy = "user")
+    private List<Cart> carts;
+
     public User() {
     }
 
 
-    public User(UUID userId, String name, String email, String mobile, String address, String nic, Date dob, String password, String role, List<Order> orders, List<Review> reviews, List<Shop> shops) {
+    public User(UUID userId, String name, String email, String mobile, String address, String nic, Date dob, String password, String role, List<Order> orders, List<Review> reviews, List<Shop> shops, List<Cart> carts) {
         this.userId = userId;
         this.name = name;
         this.email = email;
@@ -61,13 +66,7 @@ public class User {
         this.orders = orders;
         this.reviews = reviews;
         this.shops = shops;
-    }
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
+        this.carts = carts;
     }
 
     public UUID getUserId() {
@@ -76,6 +75,14 @@ public class User {
 
     public void setUserId(UUID userId) {
         this.userId = userId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -156,5 +163,13 @@ public class User {
 
     public void setShops(List<Shop> shops) {
         this.shops = shops;
+    }
+
+    public List<Cart> getCarts() {
+        return carts;
+    }
+
+    public void setCarts(List<Cart> carts) {
+        this.carts = carts;
     }
 }

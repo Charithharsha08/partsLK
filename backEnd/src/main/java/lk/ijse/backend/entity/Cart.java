@@ -1,33 +1,38 @@
 package lk.ijse.backend.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lk.ijse.backend.DTO.UserDTO;
 
 @Entity
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long cartId;
-    private long userId;
-    private long itemId;
     private String name;
     private String image;
     private int qty;
     private double price;
 
+
+    @ManyToOne
+    @JoinColumn(name = "userId", referencedColumnName = "userId")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "shopId", referencedColumnName = "shopId")
+    private Shop shop;
+
     public Cart() {
     }
 
-    public Cart(long cartId, long userId, long itemId, String name, String image, int qty, double price) {
+    public Cart(long cartId, String name, String image, int qty, double price, User user, Shop shop) {
         this.cartId = cartId;
-        this.userId = userId;
-        this.itemId = itemId;
         this.name = name;
         this.image = image;
         this.qty = qty;
         this.price = price;
+        this.user = user;
+        this.shop = shop;
     }
 
     public long getCartId() {
@@ -36,22 +41,6 @@ public class Cart {
 
     public void setCartId(long cartId) {
         this.cartId = cartId;
-    }
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
     }
 
     public String getName() {
@@ -84,5 +73,21 @@ public class Cart {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Shop getShop() {
+        return shop;
+    }
+
+    public void setShop(Shop shop) {
+        this.shop = shop;
     }
 }

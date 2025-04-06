@@ -86,4 +86,10 @@ public class ShopServiceImpl implements ShopService {
     public List<ShopDTO> findAllShops() {
         return modelMapper.map(shopRepository.findAll(),new TypeToken<List<ShopDTO>>(){}.getType());
     }
+
+    @Override
+    public ShopDTO searchShopById(long shopId) {
+        shopRepository.findById(shopId);
+        return modelMapper.map(shopRepository.findById(shopId),ShopDTO.class);
+    }
 }

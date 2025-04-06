@@ -1,13 +1,12 @@
 package lk.ijse.backend.service;
 
 import lk.ijse.backend.DTO.CartDTO;
+import lk.ijse.backend.DTO.UserDTO;
 
 public interface CartService {
-    int save (CartDTO cartDTO);
-    int update (CartDTO cartDTO);
-    int delete (long cartId);
-    int deleteByUserId (long userId);
-    int deleteByShopId (long shopId);
-    int deleteByUserIdAndCartId (long userId, long cartId);
+    int saveCart (CartDTO cartDTO);
+    int updateCart (CartDTO cartDTO);
+    int deleteCartByUser (UserDTO userDTO);
+    int deleteItemById (long cartId);
 
 }
