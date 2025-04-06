@@ -2,9 +2,11 @@ package lk.ijse.backend.controller;
 
 
 
+import jakarta.mail.MessagingException;
 import lk.ijse.backend.DTO.AuthDTO;
 import lk.ijse.backend.DTO.ResponseDTO;
 import lk.ijse.backend.DTO.UserDTO;
+import lk.ijse.backend.service.MailService;
 import lk.ijse.backend.service.impl.UserServiceImpl;
 import lk.ijse.backend.util.JwtUtil;
 import lk.ijse.backend.util.VarList;
@@ -23,17 +25,19 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final UserServiceImpl userService;
     private final ResponseDTO responseDTO;
+    private final MailService mailService;
 
     //constructor injection
-    public AuthController(JwtUtil jwtUtil, AuthenticationManager authenticationManager, UserServiceImpl userService, ResponseDTO responseDTO) {
+    public AuthController(JwtUtil jwtUtil, AuthenticationManager authenticationManager, UserServiceImpl userService, ResponseDTO responseDTO, MailService mailService) {
         this.jwtUtil = jwtUtil;
         this.authenticationManager = authenticationManager;
         this.userService = userService;
         this.responseDTO = responseDTO;
+        this.mailService = mailService;
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<ResponseDTO> authenticate(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<ResponseDTO> authenticate(@RequestBody UserDTO userDTO) throws MessagingException {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword()));
@@ -57,6 +61,8 @@ public class AuthController {
         AuthDTO authDTO = new AuthDTO();
         authDTO.setToken(token);
         authDTO.setUser(loadedUser);
+        mailService.sendMail(loadedUser.getEmail(), "Login Success", "Login Success");
+
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new ResponseDTO(VarList.Created, "Success", authDTO));
