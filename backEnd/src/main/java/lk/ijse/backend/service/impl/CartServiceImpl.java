@@ -8,8 +8,11 @@ import lk.ijse.backend.repo.CartServiceRepository;
 import lk.ijse.backend.service.CartService;
 import lk.ijse.backend.util.VarList;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -60,6 +63,15 @@ public class CartServiceImpl implements CartService {
             return VarList.OK;
         }else {
             return VarList.Not_Found;
+        }
+    }
+
+    @Override
+    public List<CartDTO> getAllCartsByUser(UserDTO userDTO) {
+        if (cartServiceRepository.existsCartByUser(modelMapper.map(userDTO, User.class))) {
+            return modelMapper.map(cartServiceRepository.findCartByUser(modelMapper.map(userDTO, User.class)), new TypeToken<List<Cart>>(){}.getType());
+        }else {
+            return null;
         }
     }
 }

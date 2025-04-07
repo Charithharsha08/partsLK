@@ -9,7 +9,23 @@ $(document).ready(function () {
             let productContainer = $('.shop-product-wrap'); // Targeting the product container
 
             response.data.forEach(function (item) {
+                console.log("Item Image: "+item.itemImage);
+                $(".item-name").text(item.itemName);
                 let oldPrice = 2000 + item.itemPrice;
+                $("#old-item-price").text("Rs : " +oldPrice);
+                $("#item-price").text("Rs : " + item.itemPrice);
+                $("#item-description").text(item.itemDescription);
+                $("#item-image").attr("src", "../" + item.itemImage);
+                $("#item-name").text(item.itemName);
+                $("#fuel-type").text(item.fuelType);
+                $("#vehicle-model").text(item.vehicleModel);
+                $("#item-id").text(item.itemId);
+
+                if (item.itemQty > 0) {
+                    $("#availability").text("In Stock");
+                } else {
+                    $("#availability").text("Out of Stock");
+                }
                 let productHTML = `
                     <div class="col-lg-4">
                                 <div class="product-slide_item">
@@ -24,7 +40,9 @@ $(document).ready(function () {
                                                 </div>
                                                 <div class="add-actions">
                                                     <ul>
-                                                        <li><a class="uren-add_cart" href="cart.html" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i
+                                                        <li><a class="uren-add_cart" href="javascript:void(0)" data-toggle="tooltip" id="add-to-cart-btn" data-placement="top" title="Add To Cart" data-id="${item.itemId}" data-name="${item.itemName}" data-desc="${item.itemDescription}"
+                                                    data-model="${item.vehicleModel}" data-fuel="${item.fuelType}" data-price="${item.itemPrice}" data-image="${item.itemImage}
+                                                    data-qty="${item.itemQty}" data-shopid="${item.shopId}"><i
                                                             class="ion-bag"></i></a>
                                                         </li>
                                                         <li><a class="uren-wishlist" href="wishlist.html" data-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i
@@ -67,7 +85,10 @@ $(document).ready(function () {
                                             </div>
                                             <div class="add-actions">
                                                 <ul>
-                                                    <li><a class="uren-add_cart add-to-cart" href="cart.html" data-toggle="tooltip" data-placement="top" title="Add To Cart"><i class="ion-bag"></i></a>
+                                                    <li><a class="uren-add_cart add-to-cart" id="add-to-cart-pop-up-btn" data-toggle="tooltip" data-placement="top" title="Add To Cart"                         
+                                                    data-id="${item.itemId}" data-name="${item.itemName}" data-desc="${item.itemDescription}" data-image="${item.itemImage}"
+                                                    data-model="${item.vehicleModel}" data-fuel="${item.fuelType}" data-price="${item.itemPrice}"
+                                                    data-qty="${item.itemQty}" data-shopid="${item.shopId}"><i class="ion-bag"></i></a>
                                                     </li>
                                                     <li><a class="uren-wishlist add-to-wishlist" href="wishlist.html" data-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i
                                                         class="ion-android-favorite-outline"></i></a>
@@ -81,120 +102,6 @@ $(document).ready(function () {
                                     </div>
                                 </div>
                             </div>
-                            
-                            <div class="modal fade modal-wrapper" id="exampleModalCenter">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <div class="modal-inner-area sp-area row">
-                            <div class="col-lg-5">
-                                <div class="sp-img_area">
-                                    <div class="sp-img_slider slick-img-slider uren-slick-slider" data-slick-options='{
-                                    "slidesToShow": 1,
-                                    "arrows": false,
-                                    "fade": true,
-                                    "draggable": false,
-                                    "swipe": false,
-                                    "asNavFor": ".sp-img_slider-nav"
-                                    }'>
-                                        <div class="single-slide red">
-                                            <img src="../${item.itemImage}" alt="Uren's Product Image">
-                                        </div>
-                                    </div>
-                                    <div class="sp-img_slider-nav slick-slider-nav uren-slick-slider slider-navigation_style-3" data-slick-options='{
-                                   "slidesToShow": 4,
-                                    "asNavFor": ".sp-img_slider",
-                                   "focusOnSelect": true,
-                                   "arrows" : true,
-                                   "spaceBetween": 30
-                                  }' data-slick-responsive='[
-                                    {"breakpoint":1501, "settings": {"slidesToShow": 3}},
-                                    {"breakpoint":992, "settings": {"slidesToShow": 4}},
-                                    {"breakpoint":768, "settings": {"slidesToShow": 3}},
-                                    {"breakpoint":575, "settings": {"slidesToShow": 2}}
-                                ]'>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-7 col-lg-6">
-                                <div class="sp-content">
-                                    <div class="sp-heading">
-                                        <h5><a href="#">${item.itemName}</a></h5>
-                                    </div>
-                                    <div class="price-box">
-                                        <span class="new-price new-price-2">${item.itemPrice}</span>
-                                        <span class="old-price">${oldPrice}</span>
-                                    </div>
-                                    <div class="sp-essential_stuff">
-                                        <ul>
-                                            <li>Vehicle Moodel <a href="javascript:void(0)">${item.vehicleModel}</a></li>                                   <li>Fuel Type <a href="javascript:void(0)">${item.fuelType}</a></li>
-                                            <li>Product Code: <a href="javascript:void(0)">${item.itemId}</a></li>
-                                            <li>Reward Points: <a href="javascript:void(0)">100</a></li>
-                                            <li>Availability: <a href="javascript:void(0)">In Stock</a></li>
-                                        </ul>
-                                    </div>
-                                    
-                                    <div class="quantity">
-                                        <label>Quantity</label>
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
-                                            <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                            <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                        </div>
-                                    </div>
-                                    <div class="uren-group_btn">
-                                        <ul>
-                                            <li><a href="cart.html" class="add-to_cart">Cart To Cart</a></li>
-                                            <li><a href="cart.html"><i class="ion-android-favorite-outline"></i></a></li>
-                                            <li><a href="cart.html"><i class="ion-ios-shuffle-strong"></i></a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="uren-tag-line">
-                                        <h6>Tags:</h6>
-                                        <a href="javascript:void(0)">Shop</a>,
-                                        <a href="javascript:void(0)">Item</a>,
-                                        <a href="javascript:void(0)">${item.itemName}</a>
-                                    </div>
-                                    <div class="uren-social_link">
-                                        <ul>
-                                            <li class="facebook">
-                                                <a href="https://www.facebook.com/" data-toggle="tooltip" target="_blank" title="Facebook">
-                                                    <i class="fab fa-facebook"></i>
-                                                </a>
-                                            </li>
-                                            <li class="twitter">
-                                                <a href="https://twitter.com/" data-toggle="tooltip" target="_blank" title="Twitter">
-                                                    <i class="fab fa-twitter-square"></i>
-                                                </a>
-                                            </li>
-                                            <li class="youtube">
-                                                <a href="https://www.youtube.com/" data-toggle="tooltip" target="_blank" title="Youtube">
-                                                    <i class="fab fa-youtube"></i>
-                                                </a>
-                                            </li>
-                                            <li class="google-plus">
-                                                <a href="https://www.plus.google.com/discover" data-toggle="tooltip" target="_blank" title="Google Plus">
-                                                    <i class="fab fa-google-plus"></i>
-                                                </a>
-                                            </li>
-                                            <li class="instagram">
-                                                <a href="https://rss.com/" data-toggle="tooltip" target="_blank" title="Instagram">
-                                                    <i class="fab fa-instagram"></i>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 `;
 
                 productContainer.append(productHTML); // Append the dynamically created product card
@@ -212,4 +119,60 @@ $(".add-to_cart").click (function (e){
 
 })
 
+$(document).on("click", "#add-to-cart-btn", function (e) {
+    e.preventDefault();
+    console.log("item name eka "+$(this).data("item-name"))
+    $.ajax({
+        url: "http://localhost:8082/api/v1/cart/add",
+        method: "POST",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        data: JSON.stringify({
+            itemId: $(this).data("id"),
+            qty: 1,
+            name: $(this).data("name"),
+            image: $(this).data("image"),
+            price: $(this).data("price"),
+            shopDTO: {
+                shopId: $(this).data("shopid"),
+            }
+        }),
+        success: function (response) {
+            console.log("Item added to cart", response);
+            Swal.fire({
+                toast: true,
+                position: 'bottom-end', // bottom-right corner
+                icon: 'success',
+                title: 'Item added to cart',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+        },
+        error: function (xhr, status, error) {
+            console.log("Error adding item to cart", xhr);
+            Swal.fire({
+                toast: true,
+                position: 'bottom-end',
+                icon: 'error',
+                title: 'Failed to add item to cart',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            });
+
+        }
+    })
+});
 
