@@ -63,7 +63,6 @@ public class ItemController {
             ItemDTO findItemInDB = itemService.searchItem(itemDTO.getItemId());
 
             if (image != null && !image.isEmpty()) {
-                System.out.println("load image upload");
                 String imagePath = FileUploadUtil.uploadFile("item-Images/", image.getOriginalFilename(), image);
                 findItemInDB.setItemImage("assets/images/item-Images/" + imagePath);
             }
@@ -76,9 +75,6 @@ public class ItemController {
             findItemInDB.setItemPrice(itemDTO.getItemPrice());
             findItemInDB.setItemQty(itemDTO.getItemQty());
             findItemInDB.setShopId(itemDTO.getShopId());
-
-
-            System.out.println(" aluth object eke image path eka " +findItemInDB.getItemImage());
 
            int res = itemService.updateItem(findItemInDB);
             switch (res) {
