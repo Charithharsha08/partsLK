@@ -1,9 +1,7 @@
 package lk.ijse.backend.service.impl;
 
 import lk.ijse.backend.DTO.CartDTO;
-import lk.ijse.backend.DTO.UserDTO;
 import lk.ijse.backend.entity.Cart;
-import lk.ijse.backend.entity.User;
 import lk.ijse.backend.repo.CartServiceRepository;
 import lk.ijse.backend.service.CartService;
 import lk.ijse.backend.util.VarList;
@@ -48,12 +46,12 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public int deleteCartByUser(UserDTO userDTO) {
-        if (!cartServiceRepository.existsCartByUser(modelMapper.map(userDTO, User.class))) {
-            return VarList.Not_Found;
-        }else {
-            cartServiceRepository.deleteCartByUser(modelMapper.map(userDTO, User.class));
+    public int deleteCartByUser(UUID userId) {
+        if (cartServiceRepository.existsCartByUser_UserId(userId)) {
+            cartServiceRepository.deleteCartByUser_UserId(userId);
             return VarList.OK;
+        }else {
+            return VarList.Not_Found;
         }
     }
 
@@ -69,6 +67,11 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public List<CartDTO> getAllCartsByUser(UUID userId) {
-            return modelMapper.map(cartServiceRepository.findCartsByUser_UserId(userId), new TypeToken<List<Cart>>(){}.getType());
+            return modelMapper.map(cartServiceRepository.findAllByUser_UserId(userId), new TypeToken<List<CartDTO>>(){}.getType());
+    }
+
+    @Override
+    public List<CartDTO> getAllCart() {
+        return modelMapper.map(cartServiceRepository.findAll(),new TypeToken<List<CartDTO>>(){}.getType());
     }
 }

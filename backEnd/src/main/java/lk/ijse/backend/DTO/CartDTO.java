@@ -1,27 +1,29 @@
 package lk.ijse.backend.DTO;
 
+import java.util.UUID;
+
 public class CartDTO {
     private long cartId;
-    private UserDTO userDTO;
+    private UUID userId;
     private long itemId;
     private String name;
     private String image;
     private int qty;
     private double price;
-    private ShopDTO shopDTO;
+    private long shopId;
 
     public CartDTO() {
     }
 
-    public CartDTO(long cartId, UserDTO userDTO, long itemId, String name, String image, int qty, double price, ShopDTO shopDTO) {
+    public CartDTO(long cartId, UUID userId, long itemId, String name, String image, int qty, double price, long shopId) {
         this.cartId = cartId;
-        this.userDTO = userDTO;
+        this.userId = userId;
         this.itemId = itemId;
         this.name = name;
         this.image = image;
         this.qty = qty;
         this.price = price;
-        this.shopDTO = shopDTO;
+        this.shopId = shopId;
     }
 
     public long getCartId() {
@@ -32,12 +34,12 @@ public class CartDTO {
         this.cartId = cartId;
     }
 
-    public UserDTO getUserDTO() {
-        return userDTO;
+    public UUID getUserId() {
+        return userId;
     }
 
-    public void setUserDTO(UserDTO userDTO) {
-        this.userDTO = userDTO;
+    public void setUserId(UUID userId) {
+        this.userId = userId;
     }
 
     public long getItemId() {
@@ -80,11 +82,11 @@ public class CartDTO {
         this.price = price;
     }
 
-    public ShopDTO getShopDTO() {
-        return shopDTO;
+    public long getShopId() {
+        return shopId;
     }
 
-    public void setShopDTO(ShopDTO shopDTO) {
-        this.shopDTO = shopDTO;
+    public void setShopId(long shopId) {
+        this.shopId = shopId;
     }
 }

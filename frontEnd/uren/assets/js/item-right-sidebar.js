@@ -135,9 +135,8 @@ $(document).on("click", "#add-to-cart-btn", function (e) {
             name: $(this).data("name"),
             image: $(this).data("image"),
             price: $(this).data("price"),
-            shopDTO: {
-                shopId: $(this).data("shopid"),
-            }
+            shopId: $(this).data("shopid"),
+
         }),
         success: function (response) {
             console.log("Item added to cart", response);

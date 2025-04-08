@@ -38,10 +38,10 @@ public class CartController {
             String token = authHeader.substring(7);
             String username = jwtUtil.getUsernameFromToken(token);
             UserDTO userDTO = userService.searchUser(username);
-            cartDTO.setUserDTO(userDTO);
+            cartDTO.setUserId(userDTO.getUserId());
 
-            ShopDTO shopDTO = shopService.searchShopById(cartDTO.getShopDTO().getShopId());
-            cartDTO.setShopDTO(shopDTO);
+            ShopDTO shopDTO = shopService.searchShopById(cartDTO.getShopId());
+            cartDTO.setShopId(shopDTO.getShopId());
 
 
 
@@ -67,7 +67,7 @@ public class CartController {
         }
         }
 
-        @PutMapping("/update")
+       /* @PutMapping("/update")
         public ResponseEntity<ResponseDTO> updateCart(@Valid @RequestBody CartDTO cartDTO, @RequestHeader ("Authorization") String authHeader){
             try {
                 String token = authHeader.substring(7);
@@ -97,7 +97,7 @@ public class CartController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
             }
-            }
+            }*/
 
             @DeleteMapping("/delete")
             public ResponseEntity<ResponseDTO> deleteCart(@Valid @RequestBody CartDTO cartDTO, @RequestHeader ("Authorization") String authHeader){
@@ -105,12 +105,12 @@ public class CartController {
                     String token = authHeader.substring(7);
                     String username = jwtUtil.getUsernameFromToken(token);
                     UserDTO userDTO = userService.searchUser(username);
-                    cartDTO.setUserDTO(userDTO);
+                    cartDTO.setUserId(userDTO.getUserId());
 
-                    ShopDTO shopDTO = shopService.searchShopById(cartDTO.getShopDTO().getShopId());
-                    cartDTO.setShopDTO(shopDTO);
+                    ShopDTO shopDTO = shopService.searchShopById(cartDTO.getShopId());
+                    cartDTO.setShopId(shopDTO.getShopId());
 
-                    int res = cartService.deleteCartByUser(cartDTO.getUserDTO());
+                    int res = cartService.deleteCartByUser(cartDTO.getUserId());
                     switch (res){
                         case VarList.OK -> {
                             return ResponseEntity.status(HttpStatus.OK)
@@ -167,5 +167,19 @@ public class CartController {
                             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                                     .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
                         }
+                        }
+                        @GetMapping("/getAll")
+                        public ResponseEntity<ResponseDTO> getAllCarts(){
+                            try {
+                                List<CartDTO> allCarts = cartService.getAllCart();
+                                for (CartDTO cartDTO : allCarts) {
+                                    System.out.println(cartDTO.toString());
+                                }
+                                return ResponseEntity.status(HttpStatus.OK)
+                                        .body(new ResponseDTO(VarList.OK, "Success", allCarts));
+                            } catch (Exception e) {
+                                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                                        .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
+                            }
                         }
     }
