@@ -41,8 +41,8 @@ $(document).ready(function () {
                                                 <div class="add-actions">
                                                     <ul>
                                                         <li><a class="uren-add_cart" href="javascript:void(0)" data-toggle="tooltip" id="add-to-cart-btn" data-placement="top" title="Add To Cart" data-id="${item.itemId}" data-name="${item.itemName}" data-desc="${item.itemDescription}"
-                                                    data-model="${item.vehicleModel}" data-fuel="${item.fuelType}" data-price="${item.itemPrice}" data-image="${item.itemImage}
-                                                    data-qty="${item.itemQty}" data-shopid="${item.shopId}"><i
+                                                    data-model="${item.vehicleModel}" data-fuel="${item.fuelType}" data-price="${item.itemPrice}"
+                                                    data-qty="${item.itemQty}" data-shopid="${item.shopId}" data-image="${item.itemImage}"><i
                                                             class="ion-bag"></i></a>
                                                         </li>
                                                         <li><a class="uren-wishlist" href="wishlist.html" data-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i
@@ -86,9 +86,9 @@ $(document).ready(function () {
                                             <div class="add-actions">
                                                 <ul>
                                                     <li><a class="uren-add_cart add-to-cart" id="add-to-cart-pop-up-btn" data-toggle="tooltip" data-placement="top" title="Add To Cart"                         
-                                                    data-id="${item.itemId}" data-name="${item.itemName}" data-desc="${item.itemDescription}" data-image="${item.itemImage}"
+                                                    data-id="${item.itemId}" data-name="${item.itemName}" data-desc="${item.itemDescription}" 
                                                     data-model="${item.vehicleModel}" data-fuel="${item.fuelType}" data-price="${item.itemPrice}"
-                                                    data-qty="${item.itemQty}" data-shopid="${item.shopId}"><i class="ion-bag"></i></a>
+                                                    data-qty="${item.itemQty}" data-shopid="${item.shopId}" data-image="${item.itemImage}"><i class="ion-bag"></i></a>
                                                     </li>
                                                     <li><a class="uren-wishlist add-to-wishlist" href="wishlist.html" data-toggle="tooltip" data-placement="top" title="Add To Wishlist"><i
                                                         class="ion-android-favorite-outline"></i></a>

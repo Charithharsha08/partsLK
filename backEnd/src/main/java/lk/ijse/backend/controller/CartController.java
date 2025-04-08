@@ -159,7 +159,8 @@ public class CartController {
                             String token = authHeader.substring(7);
                             String username = jwtUtil.getUsernameFromToken(token);
                             UserDTO userDTO = userService.searchUser(username);
-                            List<CartDTO> allCartsByUser = cartService.getAllCartsByUser(userDTO);
+                            List<CartDTO> allCartsByUser = cartService.getAllCartsByUser(userDTO.getUserId());
+
                             return ResponseEntity.status(HttpStatus.OK)
                                     .body(new ResponseDTO(VarList.OK, "Success", allCartsByUser));
                         } catch (Exception e) {

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class CartServiceImpl implements CartService {
@@ -67,11 +68,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public List<CartDTO> getAllCartsByUser(UserDTO userDTO) {
-        if (cartServiceRepository.existsCartByUser(modelMapper.map(userDTO, User.class))) {
-            return modelMapper.map(cartServiceRepository.findCartByUser(modelMapper.map(userDTO, User.class)), new TypeToken<List<Cart>>(){}.getType());
-        }else {
-            return null;
-        }
+    public List<CartDTO> getAllCartsByUser(UUID userId) {
+            return modelMapper.map(cartServiceRepository.findCartsByUser_UserId(userId), new TypeToken<List<Cart>>(){}.getType());
     }
 }

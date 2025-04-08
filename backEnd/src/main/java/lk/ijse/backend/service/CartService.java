@@ -5,12 +5,13 @@ import lk.ijse.backend.DTO.UserDTO;
 import lk.ijse.backend.entity.Cart;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface CartService {
     int saveCart (CartDTO cartDTO);
     int updateCart (CartDTO cartDTO);
     int deleteCartByUser (UserDTO userDTO);
     int deleteItemById (long cartId);
-    List<CartDTO> getAllCartsByUser (UserDTO userDTO);
+    List<CartDTO> getAllCartsByUser (UUID userId);
 
 }
