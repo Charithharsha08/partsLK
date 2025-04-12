@@ -36,13 +36,29 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public int updateCart(CartDTO cartDTO) {
-        if (cartServiceRepository.existsById(cartDTO.getCartId())) {
-            cartServiceRepository.save(modelMapper.map(cartDTO, Cart.class));
-            return VarList.OK;
-        }else {
-            return VarList.Not_Found;
+    public int updateCart(List<CartDTO> itemList) {
+        System.out.println("Cart update method called");
+
+        boolean allExist = true;
+
+        for (CartDTO item : itemList) {
+            System.out.println("Updating Cart Item: " + item);
+
+            if (cartServiceRepository.existsById(item.getCartId())) {
+                Cart existingCart = cartServiceRepository.findById(item.getCartId()).orElse(null);
+                if (existingCart != null) {
+                    // Manually set fields you want to update (safer than full map)
+                    existingCart.setQty(item.getQty());
+
+                    cartServiceRepository.save(existingCart);
+                }
+            } else {
+                System.out.println("Cart not found: " + item.getCartId());
+                allExist = false;
+            }
         }
+
+        return allExist ? VarList.OK : VarList.Not_Found;
     }
 
     @Override

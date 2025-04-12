@@ -67,18 +67,17 @@ public class CartController {
         }
         }
 
-       /* @PutMapping("/update")
-        public ResponseEntity<ResponseDTO> updateCart(@Valid @RequestBody CartDTO cartDTO, @RequestHeader ("Authorization") String authHeader){
+        @PutMapping("/update")
+        public ResponseEntity<ResponseDTO> updateCart(@Valid @RequestBody List<CartDTO> cartItems, @RequestHeader ("Authorization") String authHeader){
             try {
                 String token = authHeader.substring(7);
                 String username = jwtUtil.getUsernameFromToken(token);
                 UserDTO userDTO = userService.searchUser(username);
-                cartDTO.setUserDTO(userDTO);
 
-                ShopDTO shopDTO = shopService.searchShopById(cartDTO.getShopDTO().getShopId());
-                cartDTO.setShopDTO(shopDTO);
+                cartItems.forEach(item -> item.setUserId(userDTO.getUserId()));
 
-                int res = cartService.updateCart(cartDTO);
+                int res = cartService.updateCart(cartItems);
+
                 switch (res){
                     case VarList.OK -> {
                         return ResponseEntity.status(HttpStatus.OK)
@@ -97,7 +96,7 @@ public class CartController {
                 return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                         .body(new ResponseDTO(VarList.Internal_Server_Error, e.getMessage(), null));
             }
-            }*/
+            }
 
             @DeleteMapping("/delete")
             public ResponseEntity<ResponseDTO> deleteCart(@Valid @RequestBody CartDTO cartDTO, @RequestHeader ("Authorization") String authHeader){

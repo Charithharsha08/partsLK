@@ -470,8 +470,8 @@
                                             <th class="uren-product-subtotal">Total</th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody id="cart-table">
+                                       <!-- <tr>
                                             <td class="uren-product-remove"><a href="javascript:void(0)"><i class="fa fa-trash"
                                                 title="Remove"></i></a></td>
                                             <td class="uren-product-thumbnail"><a href="javascript:void(0)"><img src="assets/images/product/small-size/1.jpg" alt="Uren's Cart Thumbnail"></a></td>
@@ -502,7 +502,7 @@
                                                 </div>
                                             </td>
                                             <td class="product-subtotal"><span class="amount">$71.80</span></td>
-                                        </tr>
+                                        </tr>-->
                                     </tbody>
                                 </table>
                             </div>
@@ -514,7 +514,7 @@
                                             <input class="button" name="apply_coupon" value="Apply coupon" type="submit">
                                         </div>
                                         <div class="coupon2">
-                                            <input class="button" name="update_cart" value="Update cart" type="submit">
+                                            <input class="button" name="update_cart" id="update-cart" value="Update cart" type="submit">
                                         </div>
                                     </div>
                                 </div>
@@ -524,8 +524,8 @@
                                     <div class="cart-page-total">
                                         <h2>Cart totals</h2>
                                         <ul>
-                                            <li>Subtotal <span>$118.60</span></li>
-                                            <li>Total <span>$118.60</span></li>
+                                            <li>Subtotal <span id="sub-total"></span></li>
+                                            <li>Total <span id ="total"></span></li>
                                         </ul>
                                         <a href="javascript:void(0)">Proceed to checkout</a>
                                     </div>
@@ -743,6 +743,10 @@
 
     <!-- Main JS -->
     <script src="../uren/assets/js/main.js"></script>
+    <script src="../uren/assets/js/cart.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </body>
 

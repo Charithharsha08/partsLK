@@ -331,3 +331,11 @@ footer {
 		font-size: 30px;
 	}
 }
+.responsive-cart-img {
+	max-width: 100px; !important;
+	width: 100%;
+	height: auto;
+	display: block;
+	object-fit: contain;
+}
+

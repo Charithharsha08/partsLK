@@ -89,4 +89,18 @@ public class CartDTO {
     public void setShopId(long shopId) {
         this.shopId = shopId;
     }
+
+    @Override
+    public String toString() {
+        return "CartDTO{" +
+                "cartId=" + cartId +
+                ", userId=" + userId +
+                ", itemId=" + itemId +
+                ", name='" + name + '\'' +
+                ", image='" + image + '\'' +
+                ", qty=" + qty +
+                ", price=" + price +
+                ", shopId=" + shopId +
+                '}';
+    }
 }
