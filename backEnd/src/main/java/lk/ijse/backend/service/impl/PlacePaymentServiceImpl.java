@@ -73,7 +73,7 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
             }
         }
 
-        //save order service detail table
+       /* //save order service detail table
         if (placePaymentDTO.getServiceDTOS() != null) {
             for (ServiceDTO serviceDTO : placePaymentDTO.getServiceDTOS()) {
                 OrderedServiceDetails orderedServiceDetails = new OrderedServiceDetails();
@@ -87,7 +87,7 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
                 orderedServiceDetails.setServiceType(serviceDTO.getServiceType());
                 orderedServiceDetailRepository.save(orderedServiceDetails);
             }
-        }
+        }*/
 
         //save payment table
         Payment payment = new Payment();

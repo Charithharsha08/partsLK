@@ -29,6 +29,15 @@ public class Order {
     private String orderStatus;
     private String paymentType;
     private double orderTotal;
+    private String customerName;
+    private String customerAddress;
+    private String apartment;
+    private String customerContact;
+    private String customerEmail;
+    private String postCode;
+    private String city;
+    private String country;
+    private String note;
 
     @ManyToOne
     @JoinColumn(name = "userId", referencedColumnName = "userId")
@@ -45,13 +54,22 @@ public class Order {
     public Order() {
     }
 
-    public Order(long orderId, Date orderDate, Time orderTime, String orderStatus, String paymentType, double orderTotal, User user, Payment payment, List<OrderedServiceDetails> serviceDetails) {
+    public Order(long orderId, Date orderDate, Time orderTime, String orderStatus, String paymentType, double orderTotal, String customerName, String customerAddress, String apartment, String customerContact, String customerEmail, String postCode, String city, String country, String note, User user, Payment payment, List<OrderedServiceDetails> serviceDetails) {
         this.orderId = orderId;
         this.orderDate = orderDate;
         this.orderTime = orderTime;
         this.orderStatus = orderStatus;
         this.paymentType = paymentType;
         this.orderTotal = orderTotal;
+        this.customerName = customerName;
+        this.customerAddress = customerAddress;
+        this.apartment = apartment;
+        this.customerContact = customerContact;
+        this.customerEmail = customerEmail;
+        this.postCode = postCode;
+        this.city = city;
+        this.country = country;
+        this.note = note;
         this.user = user;
         this.payment = payment;
         this.serviceDetails = serviceDetails;
@@ -103,6 +121,78 @@ public class Order {
 
     public void setOrderTotal(double orderTotal) {
         this.orderTotal = orderTotal;
+    }
+
+    public String getCustomerName() {
+        return customerName;
+    }
+
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public String getCustomerAddress() {
+        return customerAddress;
+    }
+
+    public void setCustomerAddress(String customerAddress) {
+        this.customerAddress = customerAddress;
+    }
+
+    public String getApartment() {
+        return apartment;
+    }
+
+    public void setApartment(String apartment) {
+        this.apartment = apartment;
+    }
+
+    public String getCustomerContact() {
+        return customerContact;
+    }
+
+    public void setCustomerContact(String customerContact) {
+        this.customerContact = customerContact;
+    }
+
+    public String getCustomerEmail() {
+        return customerEmail;
+    }
+
+    public void setCustomerEmail(String customerEmail) {
+        this.customerEmail = customerEmail;
+    }
+
+    public String getPostCode() {
+        return postCode;
+    }
+
+    public void setPostCode(String postCode) {
+        this.postCode = postCode;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getNote() {
+        return note;
+    }
+
+    public void setNote(String note) {
+        this.note = note;
     }
 
     public User getUser() {

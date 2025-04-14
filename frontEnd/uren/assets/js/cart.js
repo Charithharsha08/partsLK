@@ -192,3 +192,8 @@ $(document).on("click", "#delete-item", function (e) {
         }
     });
 });
+
+$("#proceed-to-checkout").click(function () {
+    console.log("Proceed to checkout button clicked");
+    window.location.href = "../../../../../partsLK/frontEnd/pages/checkout.html";
+});
