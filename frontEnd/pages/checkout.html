@@ -528,13 +528,13 @@
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Name <span class="required">*</span></label>
-                                            <input placeholder="" type="text" id="user-name">
+                                            <input placeholder="" type="text" id="user-name" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Address <span class="required">*</span></label>
-                                            <input placeholder="Street address" type="text" id="user-address">
+                                            <input placeholder="Street address" type="text" id="user-address" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -545,31 +545,31 @@
                                     <div class="col-md-12">
                                         <div class="checkout-form-list">
                                             <label>Town / City <span class="required">*</span></label>
-                                            <input type="text" id="city">
+                                            <input type="text" id="city" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
-                                            <label>State / County <span class="required">*</span></label>
-                                            <input placeholder="" type="text" id="country">
+                                            <label>State / Province <span class="required">*</span></label>
+                                            <input placeholder="" type="text" id="country" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Postcode / Zip <span class="required">*</span></label>
-                                            <input placeholder="" type="text" id="postal">
+                                            <input placeholder="" type="text" id="postal" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Email Address <span class="required">*</span></label>
-                                            <input placeholder="" type="email" id="user-email">
+                                            <input placeholder="" type="email" id="user-email" required>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="checkout-form-list">
                                             <label>Phone <span class="required">*</span></label>
-                                            <input type="text" id="user-phone">
+                                            <input type="text" id="user-phone" required>
                                         </div>
                                     </div>
                                     <div class="col-md-12">
@@ -774,6 +774,40 @@
                 </div>
             </div>
         </div>
+        <div id="loading-spinner" style="display: none;">
+            <div class="spinner-overlay">
+                <div class="gear-spinner">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#007BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
+                        <circle cx="12" cy="12" r="3"/>
+                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <style>
+            .spinner-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255,255,255,0.9);
+                z-index: 9999;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .gear-spinner svg {
+                animation: rotate 1.2s linear infinite;
+            }
+
+            @keyframes rotate {
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+
         <!-- Uren's Checkout Area End Here -->
         <!-- Begin Uren's Footer Area -->
         <div class="uren-footer_area">

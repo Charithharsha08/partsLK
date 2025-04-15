@@ -68,8 +68,27 @@ $(document).ready(function () {
 });
 
 $("#place-order").click( function (e) {
-    console.log("Form submitted");
     e.preventDefault();
+
+    if ($("#user-name").val() === "" || $("#user-email").val() === "" || $("#user-phone").val() === "" || $("#user-address").val() === "" || $("#postal").val() === "" || $("#city").val() === "" || $("#country").val() === "") {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Please fill all the required fields.',
+            confirmButtonText: 'Okay'
+        });
+        return;
+    }else if (cartItems .length === 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Error!',
+            text: 'Your cart is empty.',
+            confirmButtonText: 'Okay'
+        });
+        return;
+    }
+
+    $("#loading-spinner").show();
 
     const shipToDifferent = $("#ship-box").is(":checked");
 
@@ -132,13 +151,29 @@ $("#place-order").click( function (e) {
         },
         data: JSON.stringify(placePaymentDTO),
         success: function (response) {
-            console.log("Success:", response);
-            alert("Order placed successfully!");
+            $("#loading-spinner").hide();
+
+            Swal.fire({
+                icon: 'success',
+                title: 'Payment Successful!',
+                text: 'You have completed the payment.',
+                confirmButtonText: 'Okay'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload(); // Only reload after user clicks "Okay"
+                }
+            });
         },
         error: function (xhr, status, error) {
+            $("#loading-spinner").hide();
+
             let data = xhr.responseJSON.data;
-            console.log(data);
-            console.log("Raw Error: ", xhr.responseText);
+            Swal.fire({
+                icon: 'error',
+                title: 'Login Failed!',
+                text: data,
+                confirmButtonText: 'Okay'
+            });
         }
     });
 });

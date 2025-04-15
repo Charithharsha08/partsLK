@@ -6,7 +6,6 @@ import lk.ijse.backend.DTO.ServiceDTO;
 import lk.ijse.backend.entity.*;
 import lk.ijse.backend.repo.*;
 import lk.ijse.backend.service.PlacePaymentService;
-import lk.ijse.backend.util.VarList;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -32,6 +31,9 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
 
     @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private CartRepository cartRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -126,6 +128,10 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
                 itemRepository.save(item);
             }
         }
+
+        //clear cart
+        cartRepository.deleteCartByUser_UserId(placePaymentDTO.getUserDTO().getUserId());
+
         return order.getOrderId();
     }
 }
