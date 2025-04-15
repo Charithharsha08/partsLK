@@ -4,10 +4,7 @@ import lk.ijse.backend.DTO.ItemDTO;
 import lk.ijse.backend.DTO.PlacePaymentDTO;
 import lk.ijse.backend.DTO.ServiceDTO;
 import lk.ijse.backend.entity.*;
-import lk.ijse.backend.repo.ItemRepository;
-import lk.ijse.backend.repo.OrderItemDetailRepository;
-import lk.ijse.backend.repo.OrderRepository;
-import lk.ijse.backend.repo.OrderedServiceDetailRepository;
+import lk.ijse.backend.repo.*;
 import lk.ijse.backend.service.PlacePaymentService;
 import lk.ijse.backend.util.VarList;
 import org.modelmapper.ModelMapper;
@@ -23,6 +20,9 @@ import java.sql.Time;
 public class PlacePaymentServiceImpl implements PlacePaymentService {
     @Autowired
     private OrderRepository orderRepository;
+
+    @Autowired
+    private PaymentRepository paymentRepository;
 
     @Autowired
     private OrderedServiceDetailRepository orderedServiceDetailRepository;
@@ -53,27 +53,42 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
         order.setOrderTime(new Time(System.nanoTime()));
         order.setOrderStatus(placePaymentDTO.getOrderStatus());
         order.setPaymentType(placePaymentDTO.getPaymentMethod());
+        order.setCustomerName(placePaymentDTO.getCustomerName());
+        order.setCustomerAddress(placePaymentDTO.getCustomerAddress());
+        order.setApartment(placePaymentDTO.getApartment());
+        order.setCustomerEmail(placePaymentDTO.getCustomerEmail());
+        order.setCustomerContact(placePaymentDTO.getCustomerContact());
+        order.setPostCode(placePaymentDTO.getPostCode());
+        order.setCity(placePaymentDTO.getCity());
+        order.setCountry(placePaymentDTO.getCountry());
+        order.setNote(placePaymentDTO.getNote());
         order.setUser(modelMapper.map(placePaymentDTO.getUserDTO(), User.class));
         order.setOrderTotal(total);
+
         orderRepository.save(order);
 
+        System.out.println("oder object eka " + order.toString());
+
+        System.out.println("order id : " + order.getOrderId());
 
         //save order item detail table
         if (placePaymentDTO.getItemDTOS() != null) {
             for (ItemDTO itemDTO : placePaymentDTO.getItemDTOS()) {
+                System.out.println("item dto" + itemDTO.toString());
                 OrderedItemDetail orderedItemDetail = new OrderedItemDetail();
                 orderedItemDetail.setOrder(order);
-                orderedItemDetail.setItem(modelMapper.map(itemDTO, lk.ijse.backend.entity.Item.class));
+                orderedItemDetail.setItem(modelMapper.map(itemDTO,Item.class));
                 orderedItemDetail.setDescription(itemDTO.getItemName());
                 orderedItemDetail.setItemPrice(itemDTO.getItemPrice());
                 orderedItemDetail.setQty(itemDTO.getItemQty());
                 orderedItemDetail.setPrice(itemDTO.getItemQty() * itemDTO.getItemPrice());
+                System.out.println(orderedItemDetail.toString());
                 orderItemDetailRepository.save(orderedItemDetail);
 
             }
         }
 
-       /* //save order service detail table
+        //save order service detail table
         if (placePaymentDTO.getServiceDTOS() != null) {
             for (ServiceDTO serviceDTO : placePaymentDTO.getServiceDTOS()) {
                 OrderedServiceDetails orderedServiceDetails = new OrderedServiceDetails();
@@ -87,9 +102,10 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
                 orderedServiceDetails.setServiceType(serviceDTO.getServiceType());
                 orderedServiceDetailRepository.save(orderedServiceDetails);
             }
-        }*/
+        }
 
         //save payment table
+
         Payment payment = new Payment();
         payment.setOrder(order);
         payment.setPaymentDate(new Date(System.currentTimeMillis()));
@@ -98,13 +114,15 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
         payment.setPaymentStatus("Done");
         payment.setPaymentMethod(placePaymentDTO.getPaymentMethod());
         order.setPayment(payment);
-
+        paymentRepository.save(payment);
 
         //update item table
         if (placePaymentDTO.getItemDTOS() != null) {
             for (ItemDTO itemDTO : placePaymentDTO.getItemDTOS()) {
                 Item item = itemRepository.findById(itemDTO.getItemId()).get();
                 item.setItemQty(item.getItemQty() - itemDTO.getItemQty());
+                System.out.println("sent qty : " + itemDTO.getItemQty());
+                System.out.println("all qty : " + item.getItemQty());
                 itemRepository.save(item);
             }
         }

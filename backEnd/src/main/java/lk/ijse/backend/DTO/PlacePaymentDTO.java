@@ -150,4 +150,24 @@ public class PlacePaymentDTO {
     public void setOrderStatus(String orderStatus) {
         this.orderStatus = orderStatus;
     }
+
+    @Override
+    public String toString() {
+        return "PlacePaymentDTO{" +
+                "userDTO=" + userDTO +
+                ", customerName='" + customerName + '\'' +
+                ", customerAddress='" + customerAddress + '\'' +
+                ", apartment='" + apartment + '\'' +
+                ", customerContact='" + customerContact + '\'' +
+                ", customerEmail='" + customerEmail + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", note='" + note + '\'' +
+                ", itemDTOS=" + itemDTOS +
+                ", serviceDTOS=" + serviceDTOS +
+                ", paymentMethod='" + paymentMethod + '\'' +
+                ", orderStatus='" + orderStatus + '\'' +
+                '}';
+    }
 }

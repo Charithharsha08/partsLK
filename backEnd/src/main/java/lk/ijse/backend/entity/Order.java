@@ -218,4 +218,28 @@ public class Order {
     public void setServiceDetails(List<OrderedServiceDetails> serviceDetails) {
         this.serviceDetails = serviceDetails;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "orderId=" + orderId +
+                ", orderDate=" + orderDate +
+                ", orderTime=" + orderTime +
+                ", orderStatus='" + orderStatus + '\'' +
+                ", paymentType='" + paymentType + '\'' +
+                ", orderTotal=" + orderTotal +
+                ", customerName='" + customerName + '\'' +
+                ", customerAddress='" + customerAddress + '\'' +
+                ", apartment='" + apartment + '\'' +
+                ", customerContact='" + customerContact + '\'' +
+                ", customerEmail='" + customerEmail + '\'' +
+                ", postCode='" + postCode + '\'' +
+                ", city='" + city + '\'' +
+                ", country='" + country + '\'' +
+                ", note='" + note + '\'' +
+                ", user=" + user +
+                ", payment=" + payment +
+                ", serviceDetails=" + serviceDetails +
+                '}';
+    }
 }

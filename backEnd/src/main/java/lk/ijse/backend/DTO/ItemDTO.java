@@ -117,4 +117,19 @@ public class ItemDTO {
     public void setShopId(long shopId) {
         this.shopId = shopId;
     }
+
+    @Override
+    public String toString() {
+        return "ItemDTO{" +
+                "itemId=" + itemId +
+                ", itemName='" + itemName + '\'' +
+                ", itemDescription='" + itemDescription + '\'' +
+                ", vehicleModel='" + vehicleModel + '\'' +
+                ", fuelType='" + fuelType + '\'' +
+                ", itemPrice=" + itemPrice +
+                ", itemQty=" + itemQty +
+                ", itemImage='" + itemImage + '\'' +
+                ", shopId=" + shopId +
+                '}';
+    }
 }

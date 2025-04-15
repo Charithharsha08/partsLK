@@ -14,28 +14,24 @@ public class OrderedItemDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long orderedItemDetailId;
-    private long orderId;
-    private long itemId;
     private String description;
     private double price;
     private double itemPrice;
     private int qty;
 
     @ManyToOne
-    @JoinColumn(name = "orderId", referencedColumnName = "orderId",insertable = false, updatable = false)
+    @JoinColumn(name = "orderId", referencedColumnName = "orderId")
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "itemId", referencedColumnName = "itemId",insertable = false, updatable = false)
+    @JoinColumn(name = "itemId", referencedColumnName = "itemId")
     private Item item;
 
     public OrderedItemDetail() {
     }
 
-    public OrderedItemDetail(long orderedItemDetailId, long orderId, long itemId, String description, double price, double itemPrice, int qty, Order order, Item item) {
+    public OrderedItemDetail(long orderedItemDetailId, String description, double price, double itemPrice, int qty, Order order, Item item) {
         this.orderedItemDetailId = orderedItemDetailId;
-        this.orderId = orderId;
-        this.itemId = itemId;
         this.description = description;
         this.price = price;
         this.itemPrice = itemPrice;
@@ -50,22 +46,6 @@ public class OrderedItemDetail {
 
     public void setOrderedItemDetailId(long orderedItemDetailId) {
         this.orderedItemDetailId = orderedItemDetailId;
-    }
-
-    public long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(long orderId) {
-        this.orderId = orderId;
-    }
-
-    public long getItemId() {
-        return itemId;
-    }
-
-    public void setItemId(long itemId) {
-        this.itemId = itemId;
     }
 
     public String getDescription() {
@@ -114,5 +94,18 @@ public class OrderedItemDetail {
 
     public void setItem(Item item) {
         this.item = item;
+    }
+
+    @Override
+    public String toString() {
+        return "OrderedItemDetail{" +
+                "orderedItemDetailId=" + orderedItemDetailId +
+                ", description='" + description + '\'' +
+                ", price=" + price +
+                ", itemPrice=" + itemPrice +
+                ", qty=" + qty +
+                ", order=" + order +
+                ", item=" + item +
+                '}';
     }
 }

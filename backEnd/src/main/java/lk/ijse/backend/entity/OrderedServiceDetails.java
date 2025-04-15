@@ -17,8 +17,6 @@ public class OrderedServiceDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long serviceDetailId;
-    private long serviceId;
-    private String userId;
     private String serviceName;
     private Date serviceDate;
     private double servicePrice;
@@ -29,20 +27,18 @@ public class OrderedServiceDetails {
 
 
     @ManyToOne
-    @JoinColumn(name = "orderId", referencedColumnName = "orderId",insertable = false, updatable = false)
+    @JoinColumn(name = "orderId", referencedColumnName = "orderId")
     private Order order;
 
     @ManyToOne
-    @JoinColumn(name = "serviceId", referencedColumnName = "serviceId",insertable = false, updatable = false)
+    @JoinColumn(name = "serviceId", referencedColumnName = "serviceId")
     private Services services;
 
     public OrderedServiceDetails() {
     }
 
-    public OrderedServiceDetails(long serviceDetailId, long serviceId, String userId, String serviceName, Date serviceDate, double servicePrice, String serviceDuration, String serviceType, String serviceStatus, Order order, Services services) {
+    public OrderedServiceDetails(long serviceDetailId, String serviceName, Date serviceDate, double servicePrice, String serviceDuration, String serviceType, String serviceStatus, Order order, Services services) {
         this.serviceDetailId = serviceDetailId;
-        this.serviceId = serviceId;
-        this.userId = userId;
         this.serviceName = serviceName;
         this.serviceDate = serviceDate;
         this.servicePrice = servicePrice;
@@ -59,22 +55,6 @@ public class OrderedServiceDetails {
 
     public void setServiceDetailId(long serviceDetailId) {
         this.serviceDetailId = serviceDetailId;
-    }
-
-    public long getServiceId() {
-        return serviceId;
-    }
-
-    public void setServiceId(long serviceId) {
-        this.serviceId = serviceId;
-    }
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
     }
 
     public String getServiceName() {
