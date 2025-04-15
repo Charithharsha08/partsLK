@@ -37,7 +37,7 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
     private ModelMapper modelMapper;
 
     @Override
-    public int placePayment(PlacePaymentDTO placePaymentDTO) {
+    public long placePayment(PlacePaymentDTO placePaymentDTO) {
         double total = 0.0;
         for (ItemDTO itemDTO : placePaymentDTO.getItemDTOS()) {
             total += itemDTO.getItemQty() * itemDTO.getItemPrice();
@@ -126,7 +126,7 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
                 itemRepository.save(item);
             }
         }
-        return VarList.Created;
+        return order.getOrderId();
     }
 }
 

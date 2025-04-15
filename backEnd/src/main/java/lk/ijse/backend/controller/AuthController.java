@@ -61,7 +61,7 @@ public class AuthController {
         AuthDTO authDTO = new AuthDTO();
         authDTO.setToken(token);
         authDTO.setUser(loadedUser);
-        mailService.sendMail(loadedUser.getEmail(), "Login Success", "Login Success");
+        mailService.sendMail(loadedUser.getEmail(), "Login Success", "You have successfully logged in to your account.");
 
 
         return ResponseEntity.status(HttpStatus.CREATED)
