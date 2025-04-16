@@ -802,124 +802,13 @@
                                                                 <thead>
                                                                 <tr>
                                                                     <th>Order ID</th>
-                                                                    <th>Item</th>
+                                                                    <th>Customer Note</th>
                                                                     <th>Status</th>
-                                                                    <th>Popularity</th>
+                                                                    <th>Payment Type</th>
                                                                 </tr>
                                                                 </thead>
-                                                                <tbody>
-                                                                <tr>
-                                                                    <td>
-                                                                        <a
-                                                                                href="pages/examples/invoice.html"
-                                                                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                                                        >OR9842</a
-                                                                        >
-                                                                    </td>
-                                                                    <td>Call of Duty IV</td>
-                                                                    <td><span
-                                                                            class="badge text-bg-success"> Shipped </span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div id="table-sparkline-1"></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <a
-                                                                                href="pages/examples/invoice.html"
-                                                                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                                                        >OR1848</a
-                                                                        >
-                                                                    </td>
-                                                                    <td>Samsung Smart TV</td>
-                                                                    <td><span
-                                                                            class="badge text-bg-warning">Pending</span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div id="table-sparkline-2"></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <a
-                                                                                href="pages/examples/invoice.html"
-                                                                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                                                        >OR7429</a
-                                                                        >
-                                                                    </td>
-                                                                    <td>iPhone 6 Plus</td>
-                                                                    <td><span
-                                                                            class="badge text-bg-danger"> Delivered </span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div id="table-sparkline-3"></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <a
-                                                                                href="pages/examples/invoice.html"
-                                                                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                                                        >OR7429</a
-                                                                        >
-                                                                    </td>
-                                                                    <td>Samsung Smart TV</td>
-                                                                    <td><span
-                                                                            class="badge text-bg-info">Processing</span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div id="table-sparkline-4"></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <a
-                                                                                href="pages/examples/invoice.html"
-                                                                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                                                        >OR1848</a
-                                                                        >
-                                                                    </td>
-                                                                    <td>Samsung Smart TV</td>
-                                                                    <td><span
-                                                                            class="badge text-bg-warning">Pending</span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div id="table-sparkline-5"></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <a
-                                                                                href="pages/examples/invoice.html"
-                                                                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                                                        >OR7429</a
-                                                                        >
-                                                                    </td>
-                                                                    <td>iPhone 6 Plus</td>
-                                                                    <td><span
-                                                                            class="badge text-bg-danger"> Delivered </span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div id="table-sparkline-6"></div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>
-                                                                        <a
-                                                                                href="pages/examples/invoice.html"
-                                                                                class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
-                                                                        >OR9842</a
-                                                                        >
-                                                                    </td>
-                                                                    <td>Call of Duty IV</td>
-                                                                    <td><span
-                                                                            class="badge text-bg-success">Shipped</span>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div id="table-sparkline-7"></div>
-                                                                    </td>
-                                                                </tr>
+                                                                <tbody id="recent-orders-table-body">
+
                                                                 </tbody>
                                                             </table>
                                                         </div>
@@ -1170,32 +1059,18 @@
                     <h4 class="small-title">ALL ORDERS</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered table-hover">
-                            <tbody>
+                            <thead>
                             <tr>
                                 <th>ORDER</th>
                                 <th>DATE</th>
                                 <th>STATUS</th>
+                                <th>CUSTOMER NAME</th>
+                                <th>PAYMENT TYPE</th>
                                 <th>TOTAL</th>
                                 <th></th>
                             </tr>
-                            <tr>
-                                <td><a class="account-order-id" href="javascript:void(0)">#5364</a></td>
-                                <td>Mar 27, 2019</td>
-                                <td>On Hold</td>
-                                <td>£162.00 for 2 items</td>
-                                <td><a href="javascript:void(0)"
-                                       class="uren-btn uren-btn_dark uren-btn_sm"><span>View</span></a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td><a class="account-order-id" href="javascript:void(0)">#5356</a></td>
-                                <td>Mar 27, 2019</td>
-                                <td>On Hold</td>
-                                <td>£162.00 for 2 items</td>
-                                <td><a href="javascript:void(0)"
-                                       class="uren-btn uren-btn_dark uren-btn_sm"><span>View</span></a>
-                                </td>
-                            </tr>
+                            </thead>
+                            <tbody id ="order-table-body">
                             </tbody>
                         </table>
                     </div>

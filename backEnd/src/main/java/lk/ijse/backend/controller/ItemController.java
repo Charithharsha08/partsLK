@@ -25,7 +25,7 @@ public class ItemController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<ResponseDTO> saveItem(@ModelAttribute ItemDTO itemDTO, @RequestParam("image") MultipartFile image) {
+    public ResponseEntity<ResponseDTO> saveItem(@ModelAttribute ItemDTO itemDTO, @RequestParam("image") MultipartFile image , @RequestHeader ("Authorization") String authHeader) {
         try {
             String imagePath = FileUploadUtil.uploadFile("item-Images/", image.getOriginalFilename(), image);
             itemDTO.setItemImage("assets/images/item-Images/" + imagePath);
@@ -49,7 +49,7 @@ public class ItemController {
         }
     }
     @DeleteMapping("/delete/{id}")
-    public ResponseEntity<ResponseDTO> deleteItem(@PathVariable long id) {
+    public ResponseEntity<ResponseDTO> deleteItem(@PathVariable long id, @RequestHeader ("Authorization") String authHeader) {
         try {
             itemService.deleteItem(id);
             return ResponseEntity.ok(new ResponseDTO(VarList.OK, "Success", null));
@@ -58,7 +58,7 @@ public class ItemController {
         }
     }
     @PutMapping("/update")
-    public ResponseEntity<ResponseDTO> updateItem(@ModelAttribute ItemDTO itemDTO, @RequestParam(value = "image", required = false) MultipartFile image) {
+    public ResponseEntity<ResponseDTO> updateItem(@ModelAttribute ItemDTO itemDTO, @RequestParam(value = "image", required = false ) MultipartFile image, @RequestHeader ("Authorization") String authHeader) {
         try {
             ItemDTO findItemInDB = itemService.searchItem(itemDTO.getItemId());
 

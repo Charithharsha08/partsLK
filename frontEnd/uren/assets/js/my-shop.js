@@ -4,6 +4,7 @@ document.getElementById('itemImage').addEventListener('change', function(event) 
 });
 
 $(document).ready(function () {
+    let shopId;
     $.ajax({
         url: "http://localhost:8082/api/v1/shop/search",
         method: "GET",
@@ -42,7 +43,7 @@ $(document).ready(function () {
                         productHTML.empty(); // Clear previous items
 
                         response.data.forEach(function (item) {
-                            console.log(item.shopId);
+                            shopId = item.shopId;
                             let productCard = $(`
                                 <div class="col-12 col-sm-6 col-md-4 d-flex"> <!-- 3 cards per row -->
             <div class="card shadow-sm border-0 rounded p-2 product-card w-100">
@@ -71,6 +72,79 @@ $(document).ready(function () {
                             `);
 
                             productHTML.append(productCard);
+
+                            $.ajax({
+                                url: "http://localhost:8082/api/v1/order/get-all/"  + shopId,
+                                method: "GET",
+                                contentType: "application/json",
+                                dataType: "json",
+                                headers: {
+                                    "Authorization": "Bearer " + localStorage.getItem("token")
+                                },
+                                success: function (response) {
+                                    let allOrersHTML = $("#order-table-body");
+
+                                    response.data.forEach(function (order) {
+
+
+                                        let tableData = $(`
+                                        <tr>
+                                <td><a class="account-order-id" href="javascript:void(0)">${order.orderId}</a></td>
+                                <td>${order.orderDate}</td>
+                                <td>${order.orderStatus}</td>
+                                <td>${order.customerName}</td>
+                                <td>${order.paymentType}</td>
+                                <td>${order.orderTotal}</td>
+                                        <td><a href="javascript:void(0)"
+                                       class="uren-btn uren-btn_dark uren-btn_sm"><span>View</span></a>
+                                </td>
+                            </tr>
+                            `);
+                                        allOrersHTML.append(tableData);
+                                    })
+
+                                    let recentOrdersHTML = $("#recent-orders-table-body");
+                                    let orders = response.data;
+                                    let displayOrders = orders.length > 5 ? orders.slice(-5) : orders;
+
+                                    displayOrders.forEach(function (order) {
+                                        let paymentBadgeClass = "";
+                                        switch (order.paymentType.toLowerCase()) {
+                                            case "direct bank transfer":
+                                                paymentBadgeClass = "text-bg-primary";
+                                                break;
+                                            case "card":
+                                                paymentBadgeClass = "text-bg-warning";
+                                                break;
+                                            case "paypal":
+                                                paymentBadgeClass = "text-bg-success";
+                                                break;
+                                            default:
+                                                paymentBadgeClass = "text-bg-secondary";
+                                        }
+
+                                        let recentOrderData = $(`
+        <tr>
+            <td>${order.orderId}</td>
+            <td>${order.note || "No note"}</td>
+            <td>
+                <span class="badge text-bg-success">${order.orderStatus}</span>
+            </td>
+            <td>
+                <span class="badge ${paymentBadgeClass}">${order.paymentType}</span>
+            </td>
+        </tr>
+    `);
+
+                                        recentOrdersHTML.append(recentOrderData);
+
+                                    })
+
+                                },
+                                error: function (xhr, status, error, response) {
+                                    console.log("Error loading items", xhr);
+                                }
+                            })
                         });
 
                         // Handle Update Button Click
