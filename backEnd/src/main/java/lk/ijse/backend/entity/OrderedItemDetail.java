@@ -18,6 +18,7 @@ public class OrderedItemDetail {
     private double price;
     private double itemPrice;
     private int qty;
+    private long shopId;
 
     @ManyToOne
     @JoinColumn(name = "orderId", referencedColumnName = "orderId")
@@ -30,14 +31,23 @@ public class OrderedItemDetail {
     public OrderedItemDetail() {
     }
 
-    public OrderedItemDetail(long orderedItemDetailId, String description, double price, double itemPrice, int qty, Order order, Item item) {
+    public OrderedItemDetail(long orderedItemDetailId, String description, double price, double itemPrice, int qty, long shopId, Order order, Item item) {
         this.orderedItemDetailId = orderedItemDetailId;
         this.description = description;
         this.price = price;
         this.itemPrice = itemPrice;
         this.qty = qty;
+        this.shopId = shopId;
         this.order = order;
         this.item = item;
+    }
+
+    public long getShopId() {
+        return shopId;
+    }
+
+    public void setShopId(long shopId) {
+        this.shopId = shopId;
     }
 
     public long getOrderedItemDetailId() {

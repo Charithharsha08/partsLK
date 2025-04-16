@@ -48,9 +48,9 @@ public class PlaceOrderController {
             placePaymentDTO.setUserDTO(userDTO);
 
             for (ItemDTO itemDTO : placePaymentDTO.getItemDTOS()) {
-                System.out.println("Controller eke thiyana dto eka "+itemDTO);
                 ItemDTO item = itemService.searchItem(itemDTO.getItemId());
                 itemDTO.setItemDescription(item.getItemDescription());
+                itemDTO.setShopId(item.getShopId());
                 if (item.getItemQty() < itemDTO.getItemQty()) {
                     return ResponseEntity.status(HttpStatus.NOT_ACCEPTABLE)
                             .body(new ResponseDTO(VarList.Not_Acceptable, "Item Quantity Not Available", null));

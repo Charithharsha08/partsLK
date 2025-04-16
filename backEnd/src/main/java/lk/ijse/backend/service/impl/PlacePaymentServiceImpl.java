@@ -84,6 +84,7 @@ public class PlacePaymentServiceImpl implements PlacePaymentService {
                 orderedItemDetail.setItemPrice(itemDTO.getItemPrice());
                 orderedItemDetail.setQty(itemDTO.getItemQty());
                 orderedItemDetail.setPrice(itemDTO.getItemQty() * itemDTO.getItemPrice());
+                orderedItemDetail.setShopId(itemDTO.getShopId());
                 System.out.println(orderedItemDetail.toString());
                 orderItemDetailRepository.save(orderedItemDetail);
 
