@@ -16,6 +16,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Time;
+
 @RestController
 @RequestMapping("/api/v1/placeOrder")
 @CrossOrigin
@@ -47,6 +49,12 @@ public class PlaceOrderController {
             UserDTO userDTO = userService.searchUser(username);
             placePaymentDTO.setUserDTO(userDTO);
 
+            double total = 0.0;
+            for (ItemDTO itemDTO : placePaymentDTO.getItemDTOS()) {
+                ItemDTO item = itemService.searchItem(itemDTO.getItemId());
+                total += item.getItemPrice() * itemDTO.getItemQty();
+            }
+
             for (ItemDTO itemDTO : placePaymentDTO.getItemDTOS()) {
                 ItemDTO item = itemService.searchItem(itemDTO.getItemId());
                 itemDTO.setItemDescription(item.getItemDescription());
@@ -63,13 +71,7 @@ public class PlaceOrderController {
             byte[] pdf = InvoiceGenerator.generateInvoicePDF(placePaymentDTO, orderId);
 
 // Send email with PDF
-            mailService.sendMailWithAttachment(
-                    userDTO.getEmail(),
-                    "Payment Successful - Order #" + orderId,
-                    "Thank you for your purchase. Please find your invoice attached.",
-                    pdf,
-                    "Invoice_" + orderId + ".pdf"
-            );
+            mailService.sendMailWithAttachment(userDTO.getEmail(), "Your Payment is Successful!", placePaymentDTO.getUserDTO().getName(), orderId, String.valueOf(System.currentTimeMillis()), String.valueOf(total), pdf, "Invoice_" + orderId + ".pdf");
 
             return ResponseEntity.status(HttpStatus.CREATED)
                     .body(new ResponseDTO(VarList.Created, "Order placed successfully", orderId));

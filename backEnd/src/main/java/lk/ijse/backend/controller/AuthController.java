@@ -1,9 +1,14 @@
 package lk.ijse.backend.controller;
 
+import jakarta.servlet.http.HttpServletRequest;
+
+
+
 
 
 import jakarta.mail.MessagingException;
 import lk.ijse.backend.DTO.AuthDTO;
+import lk.ijse.backend.DTO.LoginAlertDTO;
 import lk.ijse.backend.DTO.ResponseDTO;
 import lk.ijse.backend.DTO.UserDTO;
 import lk.ijse.backend.service.MailService;
@@ -15,6 +20,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+import static lk.ijse.backend.util.RequestUtil.getClientIP;
+import static lk.ijse.backend.util.RequestUtil.getLocationFromIP;
 
 @RestController
 @RequestMapping("api/v1/auth")
@@ -37,7 +48,7 @@ public class AuthController {
     }
 
     @PostMapping("/authenticate")
-    public ResponseEntity<ResponseDTO> authenticate(@RequestBody UserDTO userDTO) throws MessagingException {
+    public ResponseEntity<ResponseDTO> authenticate(@RequestBody UserDTO userDTO, HttpServletRequest request) throws MessagingException {
         try {
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(userDTO.getEmail(), userDTO.getPassword()));
@@ -61,7 +72,16 @@ public class AuthController {
         AuthDTO authDTO = new AuthDTO();
         authDTO.setToken(token);
         authDTO.setUser(loadedUser);
-        mailService.sendMail(loadedUser.getEmail(), "Login Success", "You have successfully logged in to your account.");
+       // mailService.sendMail(loadedUser.getEmail(), "Login Success", null);
+
+        LoginAlertDTO alertDTO = new LoginAlertDTO();
+        alertDTO.setUsername(loadedUser.getName()); // Or however you store/display username
+        alertDTO.setLoginTime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")));
+        alertDTO.setDevice(request.getHeader("User-Agent")); // You can parse this later for cleaner name
+        alertDTO.setLocation(getLocationFromIP(getClientIP(request))); // Optional, see below
+
+        mailService.sendMail(loadedUser.getEmail(), "Login Alert - New Device Detected", alertDTO);
+
 
 
         return ResponseEntity.status(HttpStatus.CREATED)

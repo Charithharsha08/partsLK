@@ -1,5 +1,5 @@
 $("#login").click(function(e) {
-    console.log("Login button clicked");
+    e.preventDefault(); // Prevent form default
     $.ajax({
         url: "http://localhost:8082/api/v1/auth/authenticate",
         method: "POST",
@@ -9,7 +9,6 @@ $("#login").click(function(e) {
             password: $("#password").val()
         }),
         success: function (response) {
-            console.log(response);
             if (response.code === 201) {
                 Swal.fire({
                     icon: 'success',
@@ -17,13 +16,11 @@ $("#login").click(function(e) {
                     text: 'You have been logged in successfully.',
                     confirmButtonText: 'Okay'
                 });
-                console.log(response.data.token);
                 localStorage.setItem("token", response.data.token);
                 window.location.href = "../../index.html";
             }
         },
-        error: function (xhr, status, error, response) {
-
+        error: function (xhr) {
             console.log(xhr.responseJSON.code)
                 let data = xhr.responseJSON.data;
 
