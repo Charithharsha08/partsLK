@@ -23,10 +23,14 @@ $("#register").click(function(e) {
                     title: 'Registration Successful!',
                     text: 'You have been registered successfully.',
                     confirmButtonText: 'Okay'
-                });
-                console.log(response.data.token);
-                 localStorage.setItem("token",response.data.token);
-                window.location.href = "../../index.html";
+                }).then((result) => {
+                        if (result.isConfirmed) {
+                            console.log(response.data.token);
+                            localStorage.setItem("token",response.data.token);
+                            window.location.href = "../../index.html";
+                        }
+                    })
+
             }
         },
         error: function (xhr, status, error, response) {
