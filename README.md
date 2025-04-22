@@ -49,34 +49,29 @@ This platform enables individuals and store owners to create personalized profil
 Modern layout showcasing top categories and featured products.
 
 
-![Homepage](<img width="1680" alt="Screenshot 2025-04-22 at 6 04 47 PM" src="https://github.com/user-attachments/assets/54a1b269-b0d2-4c03-9ff1-f8ae799ad7b1" />
-)
+<img width="1680" alt="Screenshot 2025-04-22 at 6 04 47 PM" src="https://github.com/user-attachments/assets/d3f295e7-76e7-4bce-8f72-ab965e08986d" />
 
 ### 🛍️ Storefront & Product Listings  
 User-managed stores with customizable inventory.
 
-![Store](<img width="1680" alt="Screenshot 2025-04-22 at 6 11 31 PM" src="https://github.com/user-attachments/assets/cc442f2e-0541-4e1c-be37-2678cac29f64" />
+<img width="1680" alt="Screenshot 2025-04-22 at 6 11 31 PM" src="https://github.com/user-attachments/assets/cc442f2e-0541-4e1c-be37-2678cac29f64" />
 
-)
 
 ### 🧾 Product Details  
 Rich product descriptions, pricing, and condition info.
 
-![Product Details](<img width="1680" alt="Screenshot 2025-04-22 at 6 13 32 PM" src="https://github.com/user-attachments/assets/01da4185-72bd-4592-817e-7ac4565023da" />
+<img width="1680" alt="Screenshot 2025-04-22 at 6 13 32 PM" src="https://github.com/user-attachments/assets/01da4185-72bd-4592-817e-7ac4565023da" />
 
-)
 
 ### 💳 Checkout & Payment  
-PayHere Gateway integration for secure purchases.
 
-![Payment](<img width="1680" alt="Screenshot 2025-04-22 at 6 14 13 PM" src="https://github.com/user-attachments/assets/752df32d-1148-4cfe-a93a-ce13583701d8" />
-)
+<img width="1680" alt="Screenshot 2025-04-22 at 6 14 13 PM" src="https://github.com/user-attachments/assets/752df32d-1148-4cfe-a93a-ce13583701d8" />
+
 
 ### 🧑‍💻 User Profile & Dashboard  
 Manage stores, orders, and account details.
 
-![Dashboard](<img width="1680" alt="Screenshot 2025-04-22 at 6 19 07 PM" src="https://github.com/user-attachments/assets/2bf607c6-7e3e-4611-b2cb-fdcadf02748e" />
-)
+<img width="1680" alt="Screenshot 2025-04-22 at 6 19 07 PM" src="https://github.com/user-attachments/assets/2bf607c6-7e3e-4611-b2cb-fdcadf02748e" />
 
 ---
 
