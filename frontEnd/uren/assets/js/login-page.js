@@ -1,5 +1,6 @@
 $("#login").click(function(e) {
     e.preventDefault(); // Prevent form default
+    $("#loading-spinner").show();
     $.ajax({
         url: "http://localhost:8082/api/v1/auth/authenticate",
         method: "POST",
@@ -8,19 +9,26 @@ $("#login").click(function(e) {
             email: $("#email").val(),
             password: $("#password").val()
         }),
+
         success: function (response) {
+            $("#loading-spinner").hide();
             if (response.code === 201) {
                 Swal.fire({
                     icon: 'success',
                     title: 'Login Successful!',
                     text: 'You have been logged in successfully.',
                     confirmButtonText: 'Okay'
-                });
+                }).then((result) => {
+                        if (result.isConfirmed) {
                 localStorage.setItem("token", response.data.token);
-                window.location.href = "../../index.html";
+                window.location.href = "../../frontEnd/index.html";
+            }
+                })
             }
         },
         error: function (xhr) {
+            $("#loading-spinner").hide();
+
             console.log(xhr.responseJSON.code)
                 let data = xhr.responseJSON.data;
 

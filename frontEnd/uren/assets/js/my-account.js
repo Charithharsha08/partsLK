@@ -32,11 +32,14 @@ $("#my-account-btn").click(function(e) {
     }
 });
 $("#account-logout-tab").click(function(e) {
-    console.log("Logout button clicked");
     localStorage.removeItem("token");
-    window.location.href = "../../partsLK/frontEnd/pages/login-page.html";
+    window.location.href = "../../frontEnd/pages/login-page.html";
 });
 
+$("#sign-out").click(function(e) {
+    localStorage.removeItem("token");
+    window.location.href = "../../frontEnd/pages/login-page.html";
+});
 
 $(document).ready(function () {
 

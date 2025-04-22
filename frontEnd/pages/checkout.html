@@ -53,6 +53,54 @@
         }
 </style>
 
+    <style>
+        .spinner-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(255, 255, 255, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .modern-spinner .spinner-icon {
+            animation: rotate 1s linear infinite;
+            width: 60px;
+            height: 60px;
+        }
+
+        .spinner-icon .path {
+            stroke: #007BFF;
+            stroke-linecap: round;
+            animation: dash 1.5s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes dash {
+            0% {
+                stroke-dasharray: 1, 150;
+                stroke-dashoffset: 0;
+            }
+            50% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -35;
+            }
+            100% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -124;
+            }
+        }
+    </style>
+
         </head>
 
 <body class="template-color-1">
@@ -97,12 +145,12 @@
                                     <li class="minicart-wrap">
                                         <a href="#miniCart" class="minicart-btn toolbar-btn">
                                             <div class="minicart-count_area">
-                                                <span class="item-count" id="item-count">3</span>
+                                                <span class="item-count" >0</span>
                                                 <i class="ion-bag"></i>
                                             </div>
                                             <div class="minicart-front_text">
                                                 <span>Cart:</span>
-                                                <span class="total-price" id="total-price">462.4</span>
+                                                <span class="total-price">0</span>
                                             </div>
                                         </a>
                                     </li>
@@ -128,20 +176,20 @@
                                 </div>
                                 <div id="cate-toggle" class="category-menu-list">
                                     <ul>
-                                        <li class=""><a href="pages/shop-right-sidebar.html">Car Parts</a>
+                                        <li class=""><a href="item-right-sidebar.html">Car Parts</a>
 
                                         </li>
-                                        <li class=""><a href="pages/shop-right-sidebar.html">Tools &amp;
+                                        <li class=""><a href="item-right-sidebar.html">Tools &amp;
                                             Accessories</a>
 
                                         </li>
-                                        <li class=""><a href="pages/shop-right-sidebar.html">Suspension Systems</a>
+                                        <li class=""><a href="item-right-sidebar.html">Suspension Systems</a>
 
                                         </li>
-                                        <li class=""><a href="pages/shop-right-sidebar.html">Turbo System</a>
+                                        <li class=""><a href="item-right-sidebar.html">Turbo System</a>
 
                                         </li>
-                                        <li class=""><a href="pages/shop-right-sidebar.html">Oils & Fluids</a>
+                                        <li class=""><a href="item-right-sidebar.html">Oils & Fluids</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -151,26 +199,16 @@
                             <div class="main-menu_area position-relative">
                                 <nav class="main-nav">
                                     <ul>
-                                        <li class="dropdown-holder active"><a href="index.html">Home</a>
+                                        <li class="dropdown-holder active"><a href="../index.html">Home</a>
 
                                         </li>
-                                        <li class="megamenu-holder "><a href="pages/shop-right-sidebar.html">Shop </a>
+                                        <li class="megamenu-holder "><a href="my-shop.html">Shop </a>
                                         </li>
-                                        <li><a href="pages/garage.html">Garages</a></li>
-                                        <li class=""><a href="javascript:void(0)">Pages <i
-                                                class="ion-ios-arrow-down"></i></a>
-                                            <ul class="hm-dropdown">
-                                                <li><a href="pages/my-account.html">My Account</a></li>
-                                                <li><a href="pages/login-page.html">Login | Register</a></li>
-                                                <li><a href="pages/wishlist.html">Wishlist</a></li>
-                                                <li><a href="pages/cart.html">Cart</a></li>
-                                                <li><a href="pages/checkout.html">Checkout</a></li>
-                                                <li><a href="pages/compare.html">Compare</a></li>
-                                                <li><a href="pages/404.html">404 Error</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class=""><a href="pages/about-us.html">About Us</a></li>
-                                        <li class=""><a href="pages/contact.html">Contact</a></li>
+                                        <li class=""><a href="item-right-sidebar.html">Item </a></li>
+                                        <li><a href="garage.html">Garages</a></li>
+
+                                        <li class=""><a href="about-us.html">About Us</a></li>
+                                        <li class=""><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -187,20 +225,20 @@
                                                 <li><a href="javascript:void(0)">$ Us Dollar</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="javascript:void(0)"><span><img src="uren/assets/images/menu/icon/1.jpg"
+                                        <li><a href="javascript:void(0)"><span><img src="../uren/assets/images/menu/icon/1.jpg"
                                                                                     alt=""></span> <span>Language</span> <i
                                                 class="fa fa-chevron-down"></i></a>
                                             <ul class="ht-dropdown">
-                                                <li class="active"><a href="javascript:void(0)"><img src="uren/assets/images/menu/icon/1.jpg" alt="JB's Language Icon">English</a></li>
-                                                <li><a href="javascript:void(0)"><img src="uren/assets/images/menu/icon/2.jpg" alt="JB's Language Icon">Français</a>
+                                                <li class="active"><a href="javascript:void(0)"><img src="../uren/assets/images/menu/icon/1.jpg" alt="JB's Language Icon">English</a></li>
+                                                <li><a href="javascript:void(0)"><img src="../uren/assets/images/menu/icon/2.jpg" alt="JB's Language Icon">Français</a>
                                                 </li>
                                             </ul>
                                         </li>
-                                        <li><a href="pages/my-account.html"><span class="fa fa-user"></span> <span>My
+                                        <li><a href="my-account.html"><span class="fa fa-user"></span> <span>My
                                                 Account</span><i class="fa fa-chevron-down"></i></a>
                                             <ul class="ht-dropdown ht-my_account">
-                                                <li><a href="javascript:void(0)" id="register-btn">Register</a></li>
-                                                <li class="active"><a href="javascript:void(0)" id="login-btn">Login</a></li>
+                                                <li><a href="register-page.html" id="register-btn">Register</a></li>
+                                                <li class="active"><a href="login-page.html" id="login-btn">Login</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -230,35 +268,22 @@
                             <div class="main-menu_area position-relative">
                                 <nav class="main-nav">
                                     <ul>
-                                        <li class="dropdown-holder active"><a href="index.html">Home</a>
+                                        <li class="dropdown-holder active"><a href="../index.html">Home</a>
 
                                         </li>
-                                        <li class="megamenu-holder "><a href="pages/shop-right-sidebar.html">Item </a>
+                                        <li class="megamenu-holder "><a href="item-right-sidebar.html">Item </a>
                                         </li>
-                                        <li><a href="pages/garage.html">Garages</a></li>
-                                        <li class=""><a href="javascript:void(0)">Pages <i
-                                                class="ion-ios-arrow-down"></i></a>
-                                            <ul class="hm-dropdown">
-                                                <li><a href="pages/my-account.html">My Account</a></li>
-                                                <li><a href="pages/login-page.html">Login | Register</a></li>
-                                                <li><a href="pages/wishlist.html">Wishlist</a></li>
-                                                <li><a href="pages/cart.html">Cart</a></li>
-                                                <li><a href="pages/checkout.html">Checkout</a></li>
-                                                <li><a href="pages/compare.html">Compare</a></li>
-                                            </ul>
-                                        </li>
-                                        <li class=""><a href="pages/about-us.html">About Us</a></li>
-                                        <li class=""><a href="pages/contact.html">Contact</a></li>
-                                        </li>
-                                        </li>
+                                        <li><a href="garage.html">Garages</a></li>
+                                        <li class=""><a href="about-us.html">About Us</a></li>
+                                        <li class=""><a href="contact.html">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
                         </div>
                         <div class="col-sm-3 d-block d-lg-none">
                             <div class="header-logo_area header-sticky_logo">
-                                <a href="index.html">
-                                    <img src="uren/assets/images/menu/logo/Parts%20LK%20Logo%202%20Parts-2.png" alt="partslk Logo">
+                                <a href="../index.html">
+                                    <img src="../uren/assets/images/menu/logo/Parts%20LK%20Logo%202%20Parts-2.png" alt="partslk Logo">
                                 </a>
                             </div>
                         </div>
@@ -299,50 +324,18 @@
                             <h4>Shopping Cart</h4>
                         </div>
                         <ul class="minicart-list">
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="javascript:void(0)"><i
-                                        class="ion-android-close"></i></a>
-                                <div class="product-item_img">
-                                    <img src="uren/assets/images/product/small-size/1.jpg" alt="Uren's Product Image">
-                                </div>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="pages/shop-right-sidebar.html">Autem ipsa ad</a>
-                                    <span class="product-item_quantity">1 x $145.80</span>
-                                </div>
-                            </li>
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="javascript:void(0)"><i
-                                        class="ion-android-close"></i></a>
-                                <div class="product-item_img">
-                                    <img src="uren/assets/images/product/small-size/2.jpg" alt="Uren's Product Image">
-                                </div>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="pages/shop-right-sidebar.html">Tenetur illum amet</a>
-                                    <span class="product-item_quantity">1 x $150.80</span>
-                                </div>
-                            </li>
-                            <li class="minicart-product">
-                                <a class="product-item_remove" href="javascript:void(0)"><i
-                                        class="ion-android-close"></i></a>
-                                <div class="product-item_img">
-                                    <img src="uren/assets/images/product/small-size/3.jpg" alt="Uren's Product Image">
-                                </div>
-                                <div class="product-item_content">
-                                    <a class="product-item_title" href="pages/shop-right-sidebar.html">Non doloremque placeat</a>
-                                    <span class="product-item_quantity">1 x $165.80</span>
-                                </div>
-                            </li>
+
                         </ul>
                     </div>
                     <div class="minicart-item_total">
                         <span>Subtotal</span>
-                        <span class="ammount">$462.4‬0</span>
+                        <span class="ammount"></span>
                     </div>
                     <div class="minicart-btn_area">
-                        <a href="pages/cart.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Minicart</a>
+                        <a href="cart.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Minicart</a>
                     </div>
                     <div class="minicart-btn_area">
-                        <a href="pages/checkout.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Checkout</a>
+                        <a href="checkout.html" class="uren-btn uren-btn_dark uren-btn_fullwidth">Checkout</a>
                     </div>
                 </div>
             </div>
@@ -359,26 +352,15 @@
                         <nav class="offcanvas-navigation">
                             <ul class="mobile-menu">
                                 <ul>
-                                    <li class="dropdown-holder active"><a href="index.html">Home</a>
+                                    <li class="dropdown-holder active"><a href="../index.html">Home</a>
 
                                     </li>
-                                    <li class="megamenu-holder "><a href="pages/shop-right-sidebar.html">Shop </a>
+                                    <li class="megamenu-holder "><a href="../pages/item-right-sidebar.html">Shop </a>
                                     </li>
-                                    <li><a href="pages/garage.html">Garages</a></li>
-                                    <li class=""><a href="javascript:void(0)">Pages <i
-                                            class="ion-ios-arrow-down"></i></a>
-                                        <ul class="hm-dropdown">
-                                            <li><a href="pages/my-account.html">My Account</a></li>
-                                            <li><a href="pages/login-page.html">Login | Register</a></li>
-                                            <li><a href="pages/wishlist.html">Wishlist</a></li>
-                                            <li><a href="pages/cart.html">Cart</a></li>
-                                            <li><a href="pages/checkout.html">Checkout</a></li>
-                                            <li><a href="pages/compare.html">Compare</a></li>
-                                            <li><a href="pages/404.html">404 Error</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class=""><a href="pages/about-us.html">About Us</a></li>
-                                    <li class=""><a href="pages/contact.html">Contact</a></li>
+                                    <li><a href="garage.html">Garages</a></li>
+                                    <li class=""><a href="item-right-sidebar.html">Item</a></li>
+                                    <li class=""><a href="about-us.html">About Us</a></li>
+                                    <li class=""><a href="contact.html">Contact</a></li>
                                 </ul>
                             </ul>
                         </nav>
@@ -389,12 +371,12 @@
                                         Setting</span></a>
                                     <ul class="sub-menu">
                                         <li>
-                                            <a href="" id = "my-account-btn">
+                                            <a href="javascript:void(0)" class= "my-account-btn">
                                                 <span class="mm-text">My Account</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="pages/login-page.html">
+                                            <a href="login-page.html">
                                                 <span class="mm-text">Login | Register</span>
                                             </a>
                                         </li>
@@ -454,7 +436,7 @@
                 <div class="breadcrumb-content">
                     <h2>Other</h2>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
+                        <li><a href="../index.html">Home</a></li>
                         <li class="active">Checkout</li>
                     </ul>
                 </div>
@@ -776,37 +758,18 @@
         </div>
         <div id="loading-spinner" style="display: none;">
             <div class="spinner-overlay">
-                <div class="gear-spinner">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="#007BFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-settings">
-                        <circle cx="12" cy="12" r="3"/>
-                        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33h.09a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82v.09a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/>
+                <div class="modern-spinner">
+                    <svg class="spinner-icon" viewBox="0 0 50 50">
+                        <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
                     </svg>
                 </div>
             </div>
         </div>
 
-        <style>
-            .spinner-overlay {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(255,255,255,0.9);
-                z-index: 9999;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
 
-            .gear-spinner svg {
-                animation: rotate 1.2s linear infinite;
-            }
 
-            @keyframes rotate {
-                100% { transform: rotate(360deg); }
-            }
-        </style>
+
+
 
         <!-- Uren's Checkout Area End Here -->
         <!-- Begin Uren's Footer Area -->
