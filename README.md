@@ -1,8 +1,7 @@
-Sure Charith! Here's a polished and professional `README.md` file tailored to your **Vehicle Spare Part Management Website**, inspired by the V/O Aesthetic Lounge format you shared:
 
 ---
 
-# 🚗 Vehicle Spare Part Hub 🔧⚙️  
+# 🚗 PartsLK Vehicle Spare Part Hub 🔧⚙️  
 Your go-to platform for buying and selling vehicle spare parts – inspired by **ikman.lk**, but laser-focused on the auto industry.
 
 This platform enables individuals and store owners to create personalized profiles, set up online spare parts shops, manage inventory, and provide customers with a smooth purchasing experience.
@@ -10,7 +9,6 @@ This platform enables individuals and store owners to create personalized profil
 ---
 
 ## 🚀 Live Demo  
-[🌐 View Demo](#)  
 [🎥 Watch on YouTube](https://youtu.be/ycEjn3y3lZw)
 
 ---
@@ -86,12 +84,12 @@ Manage stores, orders, and account details.
 
 ### 1️⃣ Clone the Repository  
 ```bash
-git clone https://github.com/YourUsername/Vehicle-Spare-Part-Hub.git
+git clone [https://github.com/YourUsername/Vehicle-Spare-Part-Hub.git](https://github.com/Charithharsha08/partsLK.git)
 ```
 
 ### 2️⃣ Create MySQL Database  
 ```sql
-CREATE DATABASE vehicle_spare_part_hub;
+CREATE DATABASE partslk;
 ```
 
 ### 3️⃣ Configure `application.properties`
@@ -135,9 +133,3 @@ Aspiring Software Engineer | IJSE | Galle 🌴
 [💻 GitHub Profile](https://github.com/Charithharsha08)
 
 ---
-
-If you'd like, I can help you convert this into a proper `README.md` file with images and links, or host a GitHub Page version. Want that?
-
-
-
-video link https://youtu.be/ycEjn3y3lZw
