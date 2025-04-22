@@ -1,5 +1,5 @@
 $(document).ready(function (e){
-    loadCart();
+    //loadCart();
     console.log("document ready");
     $.ajax({
         url: "http://localhost:8082/api/v1/cart/get",
