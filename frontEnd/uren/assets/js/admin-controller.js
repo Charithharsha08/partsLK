@@ -1,116 +1,3 @@
-$("#registerShop").click (function(e) {
-    e.preventDefault();
-    console.log("Register Shop button clicked");
-    $.ajax({
-        url: "http://localhost:8082/api/v1/shop/save",
-        method: "POST",
-        contentType: "application/json",
-        headers: {
-            "Authorization": "Bearer " + localStorage.getItem("token")
-        },
-        data: JSON.stringify({
-            shopName: $("#shopName").val(),
-            shopAddress: $("#shopAddress").val(),
-            shopContact: $("#shopContact").val(),
-            shopEmail: $("#shopEmail").val(),
-            shopOwner: $("#shopOwner").val(),
-            shopOwnerContact: $("#shopOwnerContact").val(),
-            shopOwnerEmail: $("#shopOwnerEmail").val(),
-            shopOwnerNIC: $("#shopOwnerNIC").val(),
-            shopOwnerDOB: $("#shopOwnerDOB").val(),
-
-
-        }),
-        success: function (response) {
-            console.log(response);
-            if (response.code === 201) {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Registration Successful!',
-                    text: 'You have been registered successfully.',
-                    confirmButtonText: 'Okay'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        location.reload();
-                    }
-                })
-                console.log(response.data.token);
-                localStorage.setItem("token", response.data.token);
-                window.location.href = "../../index.html";
-            }
-        },
-        error: function (xhr, status, error, response) {
-            let data = xhr.responseJSON.data;
-            console.log(data);
-
-            if (data.shopName != null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Registration Failed!',
-                    text: data.shopName,
-                    confirmButtonText: 'Okay'
-                });
-            } else if (data.shopAddress != null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Registration Failed!',
-                    text: data.shopAddress,
-                    confirmButtonText: 'Okay'
-                });
-            } else if (data.shopContact != null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Registration Failed!',
-                    text: data.shopContact,
-                    confirmButtonText: 'Okay'
-                });
-            } else if (data.shopEmail != null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Registration Failed!',
-                    text: data.shopEmail,
-                    confirmButtonText: 'Okay'
-                });
-            } else if (data.shopOwner != null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Registration Failed!',
-                    text: data.shopOwner,
-                    confirmButtonText: 'Okay'
-                });
-            } else if (data.shopOwnerContact != null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Registration Failed!',
-                    text: data.shopOwnerContact,
-                    confirmButtonText: 'Okay'
-                });
-            } else if (data.shopOwnerEmail != null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Registration Failed!',
-                    text: data.shopOwnerEmail,
-                    confirmButtonText: 'Okay'
-                });
-            } else if (data.shopOwnerNIC != null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Registration Failed!',
-                    text: data.shopOwnerNIC,
-                    confirmButtonText: 'Okay'
-                });
-            } else if (data.shopOwnerDOB != null) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Registration Failed!',
-                    text: data.shopOwnerDOB,
-                    confirmButtonText: 'Okay'
-                });
-            }
-        }
-    });
-});
-
 function loadCart () {
     $.ajax({
         url: "http://localhost:8082/api/v1/cart/get",
@@ -208,7 +95,8 @@ $(document).on("click", "#item-remove", function (e) {
 });
 
 $(document).ready(function () {
-    //loadCart();
+        loadAllUsers();
+        loadAllShops();
         $.ajax({
             url: "http://localhost:8082/api/v1/cart/get",
             method: "GET",
@@ -302,7 +190,157 @@ $(document).on("click", "#item-remove", function (e) {
     });
 
 });
-$("#my-account-btn").click (function (e) {
+
+function loadAllUsers() {
+    $.ajax({
+        url: "http://localhost:8082/api/v1/admin/get-all-users",
+        method: "GET",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        success: function (response) {
+            console.log(response);
+            $("#user-table-body").empty();
+
+            response.data.forEach(user => {
+                let userRow = `
+                    <tr>
+                        <td>${user.userId}</td>
+                        <td>${user.name}</td>
+                        <td>${user.email}</td>
+                        <td>${user.mobile}</td>
+                        <td>${user.address}</td>
+                        <td>${user.role}</td>
+                        <td><button class="btn btn-danger delete-user" data-user-email="${user.email}" data-user-id="${user.userId}">Delete</button></td>
+                    </tr>
+                `;
+                $("#user-table-body").append(userRow);
+            });
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+$(document).on("click", ".delete-user", function (e) {
     e.preventDefault();
-    window.location.href = "../../partsLK/frontEnd/pages/my-account.html";
+    let userEmail = $(this).data("user-email");
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "http://localhost:8082/api/v1/admin/delete-user/" + userEmail,
+                method: "DELETE",
+                contentType: "application/json",
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
+                success: function (response) {
+                    console.log(response);
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Deleted!',
+                        text: 'User has been deleted.',
+                        confirmButtonText: 'Okay'
+                    }).then(() => {
+                        loadAllUsers();
+                    });
+                },
+                error: function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'Failed to delete user.',
+                        confirmButtonText: 'Okay'
+                    });
+                }
+            })
+        }
+    });
+});
+
+function loadAllShops() {
+    $.ajax({
+        url: "http://localhost:8082/api/v1/admin/get-all-shops",
+        method: "GET",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        success: function (response) {
+            console.log("all shop :" + response.data);
+            $("#shop-table-body").empty();
+
+
+            response.data.forEach(shop => {
+                console.log("shop :  "+ shop);
+                let shopRow = `
+                    <tr>
+                        <td>${shop.shopId}</td>
+                        <td>${shop.shopName}</td>
+                        <td>${shop.shopAddress}</td>
+                        <td>${shop.shopContact}</td>
+                        <td><button class="btn btn-danger delete-shop" data-shop-id="${shop.shopId}">Delete</button></td>
+                    </tr>
+                `;
+
+                $("#shop-table-body").append(shopRow);
+            });
+        },
+        error: function (error) {
+            console.log(error);
+        }
+    })
+}
+
+$(document).on("click", ".delete-shop", function (e) {
+    e.preventDefault();
+    let shopId = $(this).data("shop-id");
+    Swal.fire({
+        title: 'Are you sure?',
+        text: "You won't be able to revert this!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: "http://localhost:8082/api/v1/admin/delete-shop/" + shopId,
+                method: "DELETE",
+                contentType: "application/json",
+                headers: {
+                    "Authorization": "Bearer " + localStorage.getItem("token")
+                },
+                success: function (response) {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Deleted!',
+                        text: 'Shop has been deleted.',
+                        confirmButtonText: 'Okay'
+                    }).then(() => {
+                        loadAllShops();
+                    });
+                },
+                error: function (error) {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Error!',
+                        text: 'Failed to delete shop.',
+                        confirmButtonText: 'Okay'
+                    });
+                }
+            })
+        }
+    });
 });

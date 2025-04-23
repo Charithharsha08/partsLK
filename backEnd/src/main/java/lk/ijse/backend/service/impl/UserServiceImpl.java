@@ -7,6 +7,7 @@ import lk.ijse.backend.repo.UserRepository;
 import lk.ijse.backend.service.UserService;
 import lk.ijse.backend.util.VarList;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+import java.util.UUID;
 
 
 @Service
@@ -60,7 +63,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public int deleteUser(String email) {
         if (userRepository.existsByEmail(email)) {
             userRepository.deleteByEmail(email);
-            return VarList.OK;
+            return VarList.Created;
         } else {
             return VarList.Not_Found;
         }
@@ -94,6 +97,13 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         userRepository.save(user);
         return VarList.OK;
     }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        userRepository.findAll();
+        return modelMapper.map(userRepository.findAll(),new TypeToken<List<UserDTO>>(){}.getType());
+    }
+
 
     @Override
     public int saveUser(UserDTO userDTO) {
