@@ -76,6 +76,7 @@ $("#shop-nav-btn").click(function(e) {
 });
 
 $(document).ready(function () {
+    findRole();
     $.ajax({
         url: "http://localhost:8082/api/v1/cart/get",
         method: "GET",
@@ -168,4 +169,27 @@ $(document).on("click", "#item-remove", function (e) {
         }
     });
 
+});
+
+function findRole(){
+    $.ajax({
+        url: "http://localhost:8082/api/v1/user/get",
+        method: "GET",
+        contentType: "application/json",
+        headers: {
+            "Authorization": "Bearer " + localStorage.getItem("token")
+        },
+        success: function (response) {
+            const adminLink = document.querySelector('.admin-menu a');
+
+            if (response.data.role === "ADMIN") {
+                adminLink.removeAttribute('hidden');
+            }
+        }
+})
+}
+$(document).on("click", ".admin-menu a", function (e) {
+    e.preventDefault();
+
+    window.location.href = "../../partsLK/frontEnd/pages/admin-controller.html";
 });
