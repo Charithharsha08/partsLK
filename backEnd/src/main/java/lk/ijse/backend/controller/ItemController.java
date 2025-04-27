@@ -108,7 +108,7 @@ public class ItemController {
         }
     }
     @GetMapping("/all")
-    public ResponseEntity<ResponseDTO> getAllItems(@RequestHeader ("Authorization") String authHeader) {
+    public ResponseEntity<ResponseDTO> getAllItems() {
         List<ItemDTO> allItems = itemService.getAllItems();
         return ResponseEntity.ok(new ResponseDTO(VarList.OK, "Success", allItems));
     }

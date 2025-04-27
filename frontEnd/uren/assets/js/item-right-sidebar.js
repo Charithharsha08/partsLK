@@ -3,10 +3,8 @@ $(document).ready(function () {
     $.ajax({
         url: 'http://localhost:8082/api/v1/item/all',
         type: 'GET',
-        headers: {
-            "Authorization": "Bearer " + localStorage.getItem("token")
-        },
         success: function (response) {
+            console.log(response.data);
             let productContainer = $('.shop-product-wrap'); // Targeting the product container
 
             response.data.forEach(function (item) {
