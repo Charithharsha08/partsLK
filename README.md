@@ -9,7 +9,7 @@ This platform enables individuals and store owners to create personalized profil
 ---
 
 ## 🚀 Live Demo  
-[🎥 Watch on YouTube]([[https://youtu.be/ycEjn3y3lZw](https://youtu.be/iQRPL8qC9t0?si=DDOdV8_tvxvQS8Cr)]](https://youtu.be/iQRPL8qC9t0?si=_1Es3Lpj18DHQfq3))
+[🎥 Watch on YouTube](https://youtu.be/iQRPL8qC9t0?si=DDOdV8_tvxvQS8Cr)
 
 ---
 
