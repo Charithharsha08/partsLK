@@ -79,7 +79,7 @@ Manage stores, orders, and account details.
 
 ### 1️⃣ Clone the Repository  
 ```bash
-git clone [https://github.com/YourUsername/Vehicle-Spare-Part-Hub.git](https://github.com/Charithharsha08/partsLK.git)
+git clone [https://github.com/Charithharsha08/Vehicle-Spare-Part-Hub.git](https://github.com/Charithharsha08/partsLK.git)
 ```
 
 ### 2️⃣ Create MySQL Database  
