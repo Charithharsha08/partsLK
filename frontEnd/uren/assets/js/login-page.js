@@ -21,7 +21,7 @@ $("#login").click(function(e) {
                 }).then((result) => {
                         if (result.isConfirmed) {
                 localStorage.setItem("token", response.data.token);
-                window.location.href = "../../frontEnd/index.html";
+                window.location.href = "../index.html";
             }
                 })
             }

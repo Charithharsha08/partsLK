@@ -236,6 +236,32 @@ function loadCart () {
                 `
 
                 miniCartListHTML.append(miniCartList);
+
+
+                let minileftCartListHTML = $(".minicart-list");
+
+                console.log(response.data)
+
+                let miniLeftCartList = `
+                    <li class="minicart-product" data-cart-id="${item.cartId}">
+                                <a class="product-item_remove" href="javascript:void(0)" id="item-remove"><i
+                                    class="ion-android-close"></i></a>
+                                <div class="product-item_img">
+                                    <img src="../${item.image}" alt="${item.name}">
+                                </div>
+                                <div class="product-item_content">
+                                    <a class="product-item_title" href="pages/item-right-sidebar.html">${item.name}</a>
+                                    <span class="product-item_quantity">${item.qty} x RS ${item.price}</span>
+                                </div>
+                            </li>
+                `
+
+                minileftCartListHTML.append(miniLeftCartList);
+
+                $(".total-price").text("RS:" + subtotal)
+                $(".item-count").text(response.data.length);
+                $(".ammount").text("RS:" + subtotal)
+
             });
 
             console.log("Subtotal:"+subtotal);
@@ -295,7 +321,7 @@ $(document).on("click", "#item-remove", function (e) {
 
 });
 
-$(document).ready(function () {
+/*$(document).ready(function () {
         $.ajax({
             url: "http://localhost:8082/api/v1/cart/get",
             method: "GET",
@@ -347,7 +373,7 @@ $(document).ready(function () {
             }
         })
     }
-);
+);*/
 $(document).on("click", "#item-remove", function (e) {
     e.preventDefault();
     console.log("item remove clicked");
